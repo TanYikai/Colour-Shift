@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour {
             }
 
 
-            hit = Physics2D.Raycast(new Vector2(gunTip.position.x, gunTip.position.y), dirRay, 5);
+            hit = Physics2D.Raycast(new Vector2(gunTip.position.x, gunTip.position.y), dirRay, 2);
 
 
             if (hit)
@@ -176,10 +176,13 @@ public class PlayerManager : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "GROUND" && rb.velocity.y < 0)
+        RaycastHit2D hit;
+        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY")
         {
-            isJumping = false;
-            //speed = 0;
+            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
+            if (hit)
+                isJumping = false;
+
         }
         else if (collision.gameObject.tag == "BULLET")
         {
@@ -187,6 +190,10 @@ public class PlayerManager : MonoBehaviour {
         }
         else if (collision.gameObject.tag == "MONSTER")
         {
+            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
+            if (hit)
+                isJumping = false;
+
             lives--;
             if (lives == 0)
             {
