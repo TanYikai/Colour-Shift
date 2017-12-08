@@ -43,7 +43,6 @@ public class PaintManager : MonoBehaviour {
 			mergeStack();
 		}
 		ColourObject[] stackArray = paintArray();
-		print(stackArray.Length);
 		for (i = 0; i < stackArray.Length; i++)
 		{
 			setColour(bars[i], stackArray[stackArray.Length - 1 - i]);
@@ -150,7 +149,6 @@ public class PaintManager : MonoBehaviour {
 				// If cannot merge, just push back the original two colours
 				paintStack.Push(secondColor);
 				paintStack.Push(firstColor);
-				print("Oh no");
 			}
 		}
 	}
