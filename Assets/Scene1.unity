@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 93145650}
   - component: {fileID: 93145651}
   - component: {fileID: 93145652}
+  - component: {fileID: 93145653}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: MONSTER
@@ -272,6 +273,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &93145653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93145646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b6e157ffe49e94fa1d74d9cfc43d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &210607503 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4194308362348890, guid: 7befa197d1c70264a879cc5440a1ed48,

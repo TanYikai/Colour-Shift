@@ -48,6 +48,10 @@ public class BulletManager : MonoBehaviour {
         {
             // Do Bullet stuff
         }
-
+        if (collision.gameObject.tag == "MONSTER")
+        {
+            Debug.Log("Blue" + bulletCol.getIsBlue()+" Red"+bulletCol.getIsRed()+" Yellow"+bulletCol.getIsYellow());
+             collision.gameObject.GetComponent<EnemyHealth>().damage(bulletCol);
+        }
     }
 }

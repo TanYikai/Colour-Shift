@@ -8,6 +8,7 @@ TagManager:
   - MONSTER
   - PLAYER
   - KEY
+  - BULLET
   layers:
   - Default
   - TransparentFX
