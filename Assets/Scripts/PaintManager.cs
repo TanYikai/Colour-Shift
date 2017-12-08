@@ -59,7 +59,8 @@ public class PaintManager : MonoBehaviour {
 	 **/
 	public void pushToStack(ColourObject colour)
 	{
-		if (paintStack.Count <= MAX_STACK_CAPACITY && paintStack.Count >= 0)
+		print(paintStack.Count);
+		if (paintStack.Count < MAX_STACK_CAPACITY && paintStack.Count >= 0)
 		{
 			paintStack.Push(colour);
 		}
@@ -194,5 +195,10 @@ public class PaintManager : MonoBehaviour {
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.black;
 		}
+	}
+
+	public int getStackSize()
+	{
+		return paintStack.Count;
 	}
 }
