@@ -49,7 +49,7 @@ public class EnemyHealth : MonoBehaviour {
             }
         }
     }
-    void makeDead()
+    public void makeDead()
     {
         isDead = true;
         Destroy(this.gameObject);

@@ -28,11 +28,5 @@ public class KeyManager : MonoBehaviour {
         if (--count == 0)
            this.GetComponent<Renderer>().material.color = Color.black;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "PLAYER")
-        {
-            GameManager.Instance.meetObjective();
-        }
-    }
+
 }

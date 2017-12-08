@@ -9,13 +9,15 @@ public class PlayerManager : MonoBehaviour {
     public float maxRange;
     private float speed;
     public int lives = 3;
+    public float fireRate;
+    public float nextFire;
 
-    public bool isJumping;
+    public bool isJumping = false;
     private bool facingRight = true;
 
     public Transform gunTip;
     public Rigidbody2D rb;
-    public GameObject bullet;
+    public GameObject bulletPrefab;
     private ColourObject playerCol;
 
     private bool invulnerable = false;
@@ -28,28 +30,17 @@ public class PlayerManager : MonoBehaviour {
         playerCol = new ColourObject(true,false,false);
 	}
 
-    private void FixedUpdate()
-    {
-
-
-        // Left mouse button
-        if (Input.GetKey(KeyCode.X))
-        {
-            Extract();
-        }
-
-        if (Input.GetKey(KeyCode.Z))
-        {
-            Shoot();
-        }
-    }
 
     void Update()
     {
-                       // move right, stop
+        // move right, stop
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             speed = -defaultSpeed;
+            if (facingRight)
+            {
+                Flip();
+            }
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
@@ -61,6 +52,10 @@ public class PlayerManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             speed = defaultSpeed;
+            if (!facingRight)
+            {
+                Flip();
+            }
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
@@ -79,6 +74,17 @@ public class PlayerManager : MonoBehaviour {
         }
 
         MovePlayer(speed);
+
+        // Left mouse button
+        if (Input.GetKey(KeyCode.X))
+        {
+            Extract();
+        }
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            Shoot();
+        }
 
     }
 
@@ -101,33 +107,68 @@ public class PlayerManager : MonoBehaviour {
 
     void Extract() {
 
-        Vector3 dirRay;
-
-        RaycastHit2D hit = new RaycastHit2D();
-        if (facingRight)
+        if (Time.time > nextFire)
         {
-            dirRay = Vector3.right;
-        }
-        else
-        {
-            dirRay = Vector3.left;
-        }
+            nextFire = Time.time + fireRate;
 
-        Ray2D extRay = new Ray2D(new Vector2(this.transform.position.x, this.transform.position.y), dirRay);
-        hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), Vector3.forward, maxRange, 1);
+            RaycastHit2D hit = new RaycastHit2D();
+            Vector3 dirRay;
+            if (facingRight)
+            {
+                dirRay = Vector3.right;
+            }
+            else
+            {
+                dirRay = Vector3.left;
+            }
 
-        PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().ReturnCol());
+
+            hit = Physics2D.Raycast(new Vector2(gunTip.position.x, gunTip.position.y), dirRay, 5);
+
+
+            if (hit)
+            {
+                print("hitted" + hit.collider.name);
+                if (hit.collider.tag == "KEY")
+                {
+                    print("key success");
+
+                    PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().ReturnCol());
+                }
+                else if (hit.collider.tag == "ENEMY")
+                {
+                    print("enemy success");
+                    PaintManager.instance.pushToStack(hit.collider.GetComponent<EnemyManager>().myColour);
+                    hit.collider.GetComponent<EnemyHealth>().makeDead();
+                }
+            }
+            else
+            {
+                print("missed");
+            }
+        }
+            
     }
 
     void Shoot() {
 
-        if (facingRight)
+        GameObject bullet;
+
+        if (Time.time > nextFire)
         {
-            Instantiate(bullet, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-        }
-        else if (!facingRight)
-        {
-            Instantiate(bullet, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
+            nextFire = Time.time + fireRate;
+
+            
+            if (facingRight)
+            {
+                bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+            }
+            else
+            {
+                bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
+            }
+
+            bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
         }
     }
 

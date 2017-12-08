@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletManager : MonoBehaviour {
 
     public float bulletSpeed;
+    public float lifeTime;
     Rigidbody2D myRB;
 
     public ColourObject bulletCol;
@@ -24,7 +25,12 @@ public class BulletManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+    private void Awake()
+    {
+        Destroy(this.gameObject, lifeTime);
     }
 
     public void removeForce()
