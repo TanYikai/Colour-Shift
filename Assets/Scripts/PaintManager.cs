@@ -6,18 +6,52 @@ using UnityEngine;
 public class PaintManager : MonoBehaviour {
 
 	private Stack<ColourObject> paintStack = new Stack<ColourObject>();
+	
+
+	private List<GameObject> bars = new List<GameObject>();
+
 
 	int MAX_STACK_CAPACITY = 5;
 	int MIN_TO_MERGE = 2;
 
 	// Use this for initialization
 	void Start () {
-		
+		//Sample
+		paintStack.Push(new ColourObject(true, false, false));
+		paintStack.Push(new ColourObject(false, false, true));
+		paintStack.Push(new ColourObject(true, false, true));
+		paintStack.Push(new ColourObject(false, true, false));
+		paintStack.Push(new ColourObject(false, false, true));
+
+		GameObject barZero = GameObject.Find("Stack 0");
+		GameObject barOne = GameObject.Find("Stack 1");
+		GameObject barTwo = GameObject.Find("Stack 2");
+		GameObject barThree = GameObject.Find("Stack 3");
+		GameObject barFour = GameObject.Find("Stack 4");
+
+		bars.Add(barZero);
+		bars.Add(barOne);
+		bars.Add(barTwo);
+		bars.Add(barThree);
+		bars.Add(barFour);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+		int i = 0;
+		if (Input.GetKeyDown(KeyCode.LeftShift)) {
+			mergeStack();
+		}
+		ColourObject[] stackArray = paintArray();
+		print(stackArray.Length);
+		for (i = 0; i < stackArray.Length; i++)
+		{
+			setColour(bars[i], stackArray[stackArray.Length - 1 - i]);
+		}
+		for (int j = stackArray.Length; j < MAX_STACK_CAPACITY; j++)
+		{
+			setColour(bars[j], new ColourObject(false, false, false));
+		}
 	}
 
 	/**
@@ -116,6 +150,7 @@ public class PaintManager : MonoBehaviour {
 				// If cannot merge, just push back the original two colours
 				paintStack.Push(secondColor);
 				paintStack.Push(firstColor);
+				print("Oh no");
 			}
 		}
 	}
@@ -124,5 +159,41 @@ public class PaintManager : MonoBehaviour {
 	public ColourObject[] paintArray()
 	{
 		return paintStack.ToArray();
+	}
+
+	private void setColour(GameObject gameObject, ColourObject colourObject)
+	{
+		if (colourObject.colourName() == ColourObject.RED_NAME)
+		{
+			gameObject.GetComponent<Renderer>().material.color = Color.red;
+		}
+		else if (colourObject.colourName() == ColourObject.BLUE_NAME)
+		{
+			gameObject.GetComponent<Renderer>().material.color = Color.blue;
+		}
+		else if (colourObject.colourName() == ColourObject.GREEN_NAME)
+		{
+			gameObject.GetComponent<Renderer>().material.color = Color.green;
+		}
+		else if (colourObject.colourName() == ColourObject.PURPLE_NAME)
+		{
+			gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 1, 1);
+		}
+		else if (colourObject.colourName() == ColourObject.ORANGE_NAME)
+		{
+			gameObject.GetComponent<Renderer>().material.color = new Color(1, (float)0.5, 0, 1);
+		}
+		else if (colourObject.colourName() == ColourObject.YELLOW_NAME)
+		{
+			gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+		}
+		else if (colourObject.colourName() == ColourObject.WHITE_NAME)
+		{
+			gameObject.GetComponent<Renderer>().material.color = Color.white;
+		}
+		else if (colourObject.colourName() == ColourObject.BLACK_NAME)
+		{
+			gameObject.GetComponent<Renderer>().material.color = Color.black;
+		}
 	}
 }

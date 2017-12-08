@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColourObject{
+public class ColourObject {
 
 	public Boolean isRed;
 	public Boolean isBlue;
@@ -16,6 +16,7 @@ public class ColourObject{
 	public static string PURPLE_NAME = "Purple";
 	public static string GREEN_NAME = "Green";
 	public static string WHITE_NAME = "White";
+	public static string BLACK_NAME = "Black";
 
 	public ColourObject(Boolean r, Boolean b, Boolean y) {
 		isRed = r;
@@ -100,7 +101,7 @@ public class ColourObject{
 				}
 				else
 				{
-					throw new Exception("Invalid Colour");
+					return BLACK_NAME;
 				}
 			}
 		}
