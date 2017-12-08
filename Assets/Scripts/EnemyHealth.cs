@@ -41,7 +41,7 @@ public class EnemyHealth : MonoBehaviour {
             }
         }
         else if (other.getIsYellow())
-        {
+        {   
             if (enemyColour.getIsBlue())
             {
                 if (enemyColour.getIsRed())
@@ -52,6 +52,7 @@ public class EnemyHealth : MonoBehaviour {
     public void makeDead()
     {
         isDead = true;
+        SFXManager.PlaySound("EnemyDamaged");
         Destroy(this.gameObject);
     }
 }
