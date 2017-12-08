@@ -9,7 +9,7 @@ public class KeyManager : MonoBehaviour {
     public bool isYellow;
     public int count;
 
-    public ColourObject keyCol;
+    private ColourObject keyCol;
 
 	// Use this for initialization
 	void Start () {
@@ -28,4 +28,5 @@ public class KeyManager : MonoBehaviour {
         if (--count == 0)
            this.GetComponent<Renderer>().material.color = Color.black;
     }
+
 }
