@@ -21,23 +21,23 @@ public class PaintManager : MonoBehaviour {
 		instance = this;
 
 		//Sample
-		//paintStack.Push(new ColourObject(true, false, false));
-		//paintStack.Push(new ColourObject(false, false, true));
-		//paintStack.Push(new ColourObject(true, false, true));
-		//paintStack.Push(new ColourObject(false, true, false));
-		//paintStack.Push(new ColourObject(false, false, true));
+		paintStack.Push(new ColourObject(true, false, false));
+		paintStack.Push(new ColourObject(false, false, true));
+		paintStack.Push(new ColourObject(true, false, true));
+		paintStack.Push(new ColourObject(false, true, false));
+		paintStack.Push(new ColourObject(false, false, true));
 
-		//GameObject barZero = GameObject.Find("Stack 0");
-		//GameObject barOne = GameObject.Find("Stack 1");
-		//GameObject barTwo = GameObject.Find("Stack 2");
-		//GameObject barThree = GameObject.Find("Stack 3");
-		//GameObject barFour = GameObject.Find("Stack 4");
+		GameObject barZero = GameObject.Find("Stack 0");
+		GameObject barOne = GameObject.Find("Stack 1");
+		GameObject barTwo = GameObject.Find("Stack 2");
+		GameObject barThree = GameObject.Find("Stack 3");
+		GameObject barFour = GameObject.Find("Stack 4");
 
-		//bars.Add(barZero);
-		//bars.Add(barOne);
-		//bars.Add(barTwo);
-		//bars.Add(barThree);
-		//bars.Add(barFour);
+		bars.Add(barZero);
+		bars.Add(barOne);
+		bars.Add(barTwo);
+		bars.Add(barThree);
+		bars.Add(barFour);
 	}
 
 	// Update is called once per frame

@@ -9,6 +9,7 @@ public class BulletManager : MonoBehaviour
     public float lifeTime;
     Rigidbody2D myRB;
 
+    public bool facingRight = true;
     public ColourObject bulletCol;
 
     // Use this for initialization
@@ -17,7 +18,7 @@ public class BulletManager : MonoBehaviour
         //bulletCol = PaintManager.instance.popFromStack();
         myRB = GetComponent<Rigidbody2D>();
 
-        if (transform.localRotation.z > 0)
+        if (!facingRight)
             myRB.AddForce(new Vector2(-1, 0) * bulletSpeed, ForceMode2D.Impulse);
         else
             myRB.AddForce(new Vector2(1, 0) * bulletSpeed, ForceMode2D.Impulse);
@@ -41,11 +42,12 @@ public class BulletManager : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "BULLET" || collision.gameObject.tag == "GATE") {
-      
+        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "GATE")
+        {
+            print("Died here1");
             Destroy(this.gameObject);
         }
-        if (collision.gameObject.tag == "MONSTER")
+        else if (collision.gameObject.tag == "MONSTER")
         {
             //Debug.Log("Blue" + bulletCol.getIsBlue() + " Red" + bulletCol.getIsRed() + " Yellow" + bulletCol.getIsYellow());
             collision.gameObject.GetComponent<EnemyHealth>().damage(bulletCol);
@@ -54,7 +56,17 @@ public class BulletManager : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
+        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "GATE")
+        {
+            print("Died here2");
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.tag == "MONSTER")
+        {
+            //Debug.Log("Blue" + bulletCol.getIsBlue() + " Red" + bulletCol.getIsRed() + " Yellow" + bulletCol.getIsYellow());
+            collision.gameObject.GetComponent<EnemyHealth>().damage(bulletCol);
+            Destroy(this.gameObject);
+        }
     }
    
 }

@@ -166,20 +166,16 @@ public class PlayerManager : MonoBehaviour {
     void Shoot() {
 
         GameObject bullet;
-
-        if (Time.time > nextFire)
+        
+        if (PaintManager.instance.getStackSize() > 0 && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
 
-            
             if (facingRight)
-            {
                 bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-            }
             else
-            {
-                bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
-            }
+                bullet = Instantiate(bulletPrefab, gunTip.position - new Vector3(1,0,0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            bullet.GetComponent<BulletManager>().facingRight = facingRight;
 
             if (PaintManager.instance.getStackSize() > 0)
                 bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
