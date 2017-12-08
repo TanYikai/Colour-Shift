@@ -7,7 +7,7 @@ public class BulletManager : MonoBehaviour {
     public float bulletSpeed;
     Rigidbody2D myRB;
 
-    private ColourObject bulletCol;
+    public ColourObject bulletCol;
 
     // Use this for initialization
     void Start()
@@ -36,7 +36,7 @@ public class BulletManager : MonoBehaviour {
     {
         if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "WALL")
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else if (collision.gameObject.tag == "PLAYER")
         {

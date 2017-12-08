@@ -159,6 +159,15 @@ public class PlayerManager : MonoBehaviour {
         {
             // Do Bullet stuff
         }
- 
+        else if (collision.gameObject.tag == "MONSTER")
+        {
+            this.GetComponent<PlayerHealth>().damage();
+            if (!facingRight)
+                rb.AddForceAtPosition(new Vector2(5f, 3.75f), this.GetComponent<Transform>().position, ForceMode2D.Impulse);
+            else
+                rb.AddForceAtPosition(new Vector2(-5f, 3.75f), this.GetComponent<Transform>().position, ForceMode2D.Impulse);
+
+        }
+
     }
 }

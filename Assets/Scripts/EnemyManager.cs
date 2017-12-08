@@ -63,7 +63,13 @@ public class EnemyManager : MonoBehaviour {
 
 
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "BULLET")
+        {
+            this.GetComponent<EnemyHealth>().damage(collision.gameObject.GetComponent<BulletManager>().bulletCol);
+        }
+    }
     IEnumerator changeDirectionAfter(float time)
     {
         changedDirection = true;

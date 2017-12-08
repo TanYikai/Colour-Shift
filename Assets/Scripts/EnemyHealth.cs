@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour {
         enemyColour = this.GetComponent<EnemyManager>().myColour;
 	}
 	
-	void damage(ColourObject other)
+	public void damage(ColourObject other)
     {
         if (other.getIsRed())
         {

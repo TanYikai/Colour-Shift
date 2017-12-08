@@ -24,11 +24,6 @@ public class PlayerHealth : MonoBehaviour {
         {
             makeDead();
         }
-        else
-        {
-            //this.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(5f, 3.75f), this.GetComponent<Transform>().position, ForceMode2D.Impulse);
-        }
-
     }
     void makeDead()
     {
