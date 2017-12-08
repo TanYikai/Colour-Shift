@@ -66,7 +66,7 @@ public class PlayerManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (!isJumping)
+            if (!isJumping && rb.velocity.y >= 0)
             {
                 isJumping = true;
                 rb.AddForce(new Vector2(rb.velocity.x, defaultJump));
@@ -189,7 +189,7 @@ public class PlayerManager : MonoBehaviour {
         RaycastHit2D hit;
         if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY")
         {
-            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
+            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 0.1f);
             if (hit)
                 isJumping = false;
 
@@ -200,7 +200,7 @@ public class PlayerManager : MonoBehaviour {
         }
         else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
         {
-            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
+            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 0.1f);
             if (hit)
                 isJumping = false;
 
@@ -224,10 +224,7 @@ public class PlayerManager : MonoBehaviour {
         RaycastHit2D hit;
         if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY")
         {
-            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
-            if (hit)
-                isJumping = false;
-
+            // Do
         }
         else if (collision.gameObject.tag == "BULLET")
 		{
@@ -235,7 +232,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 		else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
 		{
-			lives--;
+            lives--;
 			if (lives == 0)
 			{
 				makeDead();
