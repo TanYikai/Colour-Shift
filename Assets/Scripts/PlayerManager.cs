@@ -165,9 +165,9 @@ public class PlayerManager : MonoBehaviour {
                 makeDead();
             }
             if (!facingRight)
-                rb.AddForceAtPosition(new Vector2(5f, 3.75f), this.GetComponent<Transform>().position, ForceMode2D.Impulse);
+                rb.AddForceAtPosition(new Vector2(1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
             else
-                rb.AddForceAtPosition(new Vector2(-5f, 3.75f), this.GetComponent<Transform>().position, ForceMode2D.Impulse);
+                rb.AddForceAtPosition(new Vector2(-1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
 
         }
     }
