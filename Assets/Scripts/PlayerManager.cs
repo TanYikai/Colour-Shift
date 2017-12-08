@@ -193,6 +193,24 @@ public class PlayerManager : MonoBehaviour {
             if (PaintManager.instance.getStackSize() > 0)
             {
                 playerCol = PaintManager.instance.popFromStack();
+                if (playerCol.colourName().Equals("Red"))
+                {
+                    anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Red/redcontroller");
+                }
+                else if (playerCol.colourName().Equals("Blue"))
+                {
+                    anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Blue/bluecontroller");
+
+                }
+                else if (playerCol.colourName().Equals("Yellow"))
+                {
+                    anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Yellow/yellowcontroller");
+
+                }
+                else if (playerCol.colourName().Equals("Black"))
+                {
+                    anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Black/blackcontroller");
+                }
             }
         }
     }
