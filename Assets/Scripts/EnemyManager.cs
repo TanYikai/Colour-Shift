@@ -26,7 +26,7 @@ public class EnemyManager : MonoBehaviour {
   
 
         myRB = this.GetComponent<Rigidbody2D>();
-        myAnim = this.GetComponent<Animator>();
+        myAnim = this.GetComponent<Animator>(); 
         myTrans = this.GetComponent<Transform>();
         //StartCoroutine(changeDirectionAfter(changeTime)); //Use to change direction after time instead of collision
         if (myColour.getIsRed())
@@ -55,7 +55,7 @@ public class EnemyManager : MonoBehaviour {
             StartCoroutine(changeDirectionAfter(changeTime));
         }
         */
-
+        RaycastHit2D hit = new RaycastHit2D();
         /*Change direction with Line Cast
          */
         Vector2 lineCastPos = new Vector2(myTrans.position.x,myTrans.position.y)- new Vector2(myTrans.right.x,myTrans.right.y) * myWidth - Vector2.up * (myHeight / 2);
@@ -66,10 +66,10 @@ public class EnemyManager : MonoBehaviour {
 
         Debug.DrawLine(lineCastPos, lineCastPos - new Vector2(myTrans.right.x, myTrans.right.y) * .05f);
         //Case line to check if blocked
-        bool isBlocked = Physics2D.Linecast(lineCastPos, lineCastPos - new Vector2(myTrans.right.x, myTrans.right.y) * .05f, enemyMask);
+        hit = Physics2D.Linecast(lineCastPos, lineCastPos - new Vector2(myTrans.right.x, myTrans.right.y) * .05f, enemyMask);
 
         //If theres no ground, turn around. Or if I hit a wall, turn around
-        if (!isGrounded || isBlocked)
+        if (!isGrounded || (hit.collider!=null&&hit.collider.tag!="PLAYER"))
         {
             Vector3 currRot = myTrans.eulerAngles;
             currRot.y += 180;
