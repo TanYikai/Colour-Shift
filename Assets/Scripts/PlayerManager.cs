@@ -17,8 +17,9 @@ public class PlayerManager : MonoBehaviour {
     public Rigidbody2D rb;
     public GameObject bullet;
     private ColourObject playerCol;
-    
-    
+
+    private bool invulnerable = false;
+
 
 
     // Use this for initialization
@@ -150,11 +151,13 @@ public class PlayerManager : MonoBehaviour {
             {
                 makeDead();
             }
-            if (!facingRight)
-                rb.AddForceAtPosition(new Vector2(1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
-            else
-                rb.AddForceAtPosition(new Vector2(-1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
-
+            /*
+           if (!facingRight)
+               rb.AddForceAtPosition(new Vector2(1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
+           else
+               rb.AddForceAtPosition(new Vector2(-1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
+           */
+            StartCoroutine(InvunerablePeriod());
         }
     }
     void makeDead()
@@ -170,4 +173,13 @@ public class PlayerManager : MonoBehaviour {
 	{
 		return this.playerCol;
 	}
+    IEnumerator InvunerablePeriod()
+    {
+        invulnerable = true;
+        this.gameObject.layer = 9;
+        //Add animation 
+        yield return new WaitForSecondsRealtime(10);
+        invulnerable = false;
+        this.gameObject.layer = 0;
+    }
 }
