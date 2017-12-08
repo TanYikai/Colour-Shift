@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour {
     public float defaultJump;
     public float maxRange;
     private float speed;
-    public int lives = 3;
+    public int lives;
     public float fireRate;
     public float nextFire;
 
@@ -85,6 +85,11 @@ public class PlayerManager : MonoBehaviour {
             Shoot();
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            PaintMyself();
+        }
+
     }
 
     void MovePlayer(float playerSpeed)
@@ -108,7 +113,6 @@ public class PlayerManager : MonoBehaviour {
 
         if (PaintManager.instance.getStackSize() == 5)
         {
-            print("Error, stack full");
             return;
         }
 
@@ -142,10 +146,6 @@ public class PlayerManager : MonoBehaviour {
                     hit.collider.GetComponent<EnemyHealth>().makeDead();
                 }
             }
-            else
-            {
-                print("missed");
-            }
         }
             
     }
@@ -168,11 +168,18 @@ public class PlayerManager : MonoBehaviour {
                 bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
             }
 
-            bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
+            if (PaintManager.instance.getStackSize() > 0)
+                bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
         }
     }
 
- 
+    void PaintMyself()
+    {
+        if (PaintManager.instance.getStackSize() > 0)
+        {
+            playerCol = PaintManager.instance.popFromStack();
+        }
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -211,12 +218,15 @@ public class PlayerManager : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D collision)
 	{
-		if (collision.gameObject.tag == "GROUND" && rb.velocity.y <= 0)
-		{
-			isJumping = false;
-			//speed = 0;
-		}
-		else if (collision.gameObject.tag == "BULLET")
+        RaycastHit2D hit;
+        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY")
+        {
+            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
+            if (hit)
+                isJumping = false;
+
+        }
+        else if (collision.gameObject.tag == "BULLET")
 		{
 			// Do Bullet stuff
 		}
