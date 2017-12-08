@@ -5,14 +5,13 @@ using UnityEngine;
 public class GateManager : MonoBehaviour {
 
 	public string colour;
-	public bool isColliderEnabled = true;
-	public GameObject player = GameObject.Find("Player");
-	
+	public GameObject player;
+
 	// Use this for initialization
 	void Start () {
-		
+		player = GameObject.Find("Player");
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -20,22 +19,14 @@ public class GateManager : MonoBehaviour {
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if (isColliderEnabled)
+		if (other.gameObject.Equals(player))
 		{
-			if (other.gameObject == player)
+			print("1");
+			PlayerManager playerManager = player.GetComponent<PlayerManager>();
+			if (playerManager.getPlayerColour().colourName().Equals(colour))
 			{
-				print("1");
-				PlayerManager playerManager = player.GetComponent<PlayerManager>();
-				if (playerManager.getPlayerColour().colourName().Equals(colour))
-				{
-					print("3");
-					Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other.GetComponent<Collider2D>());
-				}
-				else
-				{
-					print("4");
-					isColliderEnabled = true;
-				}
+				print("3");
+				Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other.GetComponent<Collider2D>());
 			}
 		}
 	}
