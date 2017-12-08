@@ -44,7 +44,6 @@ public class BulletManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "GATE")
         {
-            print("Died here1");
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.tag == "MONSTER")
@@ -58,7 +57,6 @@ public class BulletManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "GATE")
         {
-            print("Died here2");
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.tag == "MONSTER")
