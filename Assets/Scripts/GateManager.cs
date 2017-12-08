@@ -17,16 +17,13 @@ public class GateManager : MonoBehaviour {
 		
 	}
 
-	public void OnTriggerEnter(Collider other)
+	public void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.gameObject.Equals(player))
+		if (other.gameObject.tag == "PLAYER")
 		{
-			print("1");
-			PlayerManager playerManager = player.GetComponent<PlayerManager>();
-			if (playerManager.getPlayerColour().colourName().Equals(colour))
+			if (player.GetComponent<PlayerManager>().getPlayerColour().colourName().Equals(colour))
 			{
-				print("3");
-				Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other.GetComponent<Collider2D>());
+				Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
 			}
 		}
 	}

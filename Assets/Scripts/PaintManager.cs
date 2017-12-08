@@ -40,7 +40,7 @@ public class PaintManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		int i = 0;
-		if (Input.GetKeyDown(KeyCode.LeftShift)) {
+		if (Input.GetKeyDown(KeyCode.C)) {
 			mergeStack();
 		}
 		ColourObject[] stackArray = paintArray();
