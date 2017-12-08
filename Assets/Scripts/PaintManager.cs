@@ -107,6 +107,12 @@ public class PaintManager : MonoBehaviour {
 					newColour = new ColourObject(true, false, true);
 					canMerge = true;
 				}
+				else if (colourNames.Contains(ColourObject.GREEN_NAME))
+				{
+					//White
+					newColour = new ColourObject(true, true, true);
+					canMerge = true;
+				}
 			}
 			else if (colourNames.Contains(ColourObject.BLUE_NAME)) {
 				if (colourNames.Contains(ColourObject.YELLOW_NAME))
@@ -115,9 +121,24 @@ public class PaintManager : MonoBehaviour {
 					newColour = new ColourObject(false, true, true);
 					canMerge = true;
 				}
+				else if (colourNames.Contains(ColourObject.ORANGE_NAME))
+				{
+					//White
+					newColour = new ColourObject(true, true, true);
+					canMerge = true;
+				}
+			}
+			else if (colourNames.Contains(ColourObject.YELLOW_NAME))
+			{
+				if (colourNames.Contains(ColourObject.PURPLE_NAME))
+				{
+					//White
+					newColour = new ColourObject(true, true, true);
+					canMerge = true;
+				}
 			}
 			else if (colourNames.Contains(ColourObject.ORANGE_NAME)) {
-				if (colourNames.Contains(ColourObject.PURPLE_NAME) || colourNames.Contains(ColourObject.GREEN_NAME) || colourNames.Contains(ColourObject.BLUE_NAME))
+				if (colourNames.Contains(ColourObject.PURPLE_NAME) || colourNames.Contains(ColourObject.GREEN_NAME))
 				{
 					//White
 					newColour = new ColourObject(true, true, true);
@@ -126,16 +147,7 @@ public class PaintManager : MonoBehaviour {
 			}
 			else if (colourNames.Contains(ColourObject.PURPLE_NAME))
 			{
-				if (colourNames.Contains(ColourObject.GREEN_NAME) || colourNames.Contains(ColourObject.YELLOW_NAME))
-				{
-					//White
-					newColour = new ColourObject(true, true, true);
-					canMerge = true;
-				}
-			}
-			else if (colourNames.Contains(ColourObject.GREEN_NAME))
-			{
-				if (colourNames.Contains(ColourObject.RED_NAME))
+				if (colourNames.Contains(ColourObject.GREEN_NAME))
 				{
 					//White
 					newColour = new ColourObject(true, true, true);
