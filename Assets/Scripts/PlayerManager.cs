@@ -59,17 +59,17 @@ public class PlayerManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            //ButtonMovement.isJumping = true;
+
             isJumping = true;
             rb.AddForce(new Vector2(rb.velocity.x, defaultJump));
-            //anim.SetInteger("State", 2);
+
         }
 
         // Left mouse button
-        /*if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             Extract();
-        }*/
+        }
 
         if (Input.GetMouseButton(1))
         {
@@ -97,37 +97,22 @@ public class PlayerManager : MonoBehaviour {
 
     void Extract() {
 
-        float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-        float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-        float currPosX = this.GetComponent<Transform>().position.x;
-        float currPosY = this.GetComponent<Transform>().position.y;
+        Vector3 dirRay;
 
-        Collider[] colliders = Physics.OverlapSphere(new Vector3(mouseX, mouseY, 0), 0.1f);
-        for (int i = 0; i < colliders.Length; i++)
+        RaycastHit2D hit = new RaycastHit2D();
+        if (facingRight)
         {
-            if (colliders[i].gameObject.CompareTag("KEY"))
-            {
-                if (Mathf.Abs(mouseX - currPosX) < maxRange && Mathf.Abs(mouseY - currPosY) < maxRange)
-                {
-                    //PaintManager.instance.pushToStack(colliders[i].gameObject.GetComponent<KeyManager>().ReturnCol());
-
-                }
-            }
-            else if (colliders[i].gameObject.CompareTag("WALL"))
-            {
-                if (Mathf.Abs(mouseX - currPosX) < maxRange && Mathf.Abs(mouseY - currPosY) < maxRange)
-                {
-                    //PaintManager.instance.pushToStack(colliders[i].gameObject.GetComponent<WallManager>().ReturnCol());
-                }
-            }
-            else if (colliders[i].gameObject.CompareTag("ENEMY"))
-            {
-                if (Mathf.Abs(mouseX - currPosX) < maxRange && Mathf.Abs(mouseY - currPosY) < maxRange) {
-                
-                    //PaintManager.instance.pushToStack(colliders[i].gameObject.GetComponent<EnemyManager>().ReturnCol());
-                }
-            }
+            dirRay = Vector3.right;
         }
+        else
+        {
+            dirRay = Vector3.left;
+        }
+
+        Ray2D extRay = new Ray2D(new Vector2(this.transform.position.x, this.transform.position.y), dirRay);
+        hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), Vector3.forward, maxRange, 1);
+
+        PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().ReturnCol());
     }
 
     void Shoot() {

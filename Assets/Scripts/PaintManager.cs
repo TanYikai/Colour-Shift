@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PaintManager : MonoBehaviour {
 
-	private static PaintManager instance;
+	public static PaintManager instance;
 	private Stack<ColourObject> paintStack = new Stack<ColourObject>();
 
 	private List<GameObject> bars = new List<GameObject>();
