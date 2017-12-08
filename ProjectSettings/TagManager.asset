@@ -7,6 +7,7 @@ TagManager:
   - GROUND
   - MONSTER
   - PLAYER
+  - KEY
   layers:
   - Default
   - TransparentFX
