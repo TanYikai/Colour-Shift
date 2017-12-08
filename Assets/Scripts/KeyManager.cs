@@ -21,12 +21,12 @@ public class KeyManager : MonoBehaviour {
 		
 	}
 
-    public ColourObject ReturnCol() { return keyCol; }
-
-    public void Extract()
+    public ColourObject Extract()
     {
         if (--count == 0)
            this.GetComponent<Renderer>().material.color = Color.black;
+
+        return keyCol;
     }
 
 }

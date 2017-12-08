@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour {
 
     void Update()
     {
-        // move right, stop
+        // move right
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             speed = -defaultSpeed;
@@ -75,7 +75,6 @@ public class PlayerManager : MonoBehaviour {
 
         MovePlayer(speed);
 
-        // Left mouse button
         if (Input.GetKey(KeyCode.X))
         {
             Extract();
@@ -122,22 +121,16 @@ public class PlayerManager : MonoBehaviour {
                 dirRay = Vector3.left;
             }
 
-
-            hit = Physics2D.Raycast(new Vector2(gunTip.position.x, gunTip.position.y), dirRay, 2);
-
+            hit = Physics2D.Raycast(new Vector2(gunTip.position.x, gunTip.position.y), dirRay, maxRange);
 
             if (hit)
             {
-                print("hitted" + hit.collider.name);
                 if (hit.collider.tag == "KEY")
                 {
-                    print("key success");
-
-                    PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().ReturnCol());
+                    PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().Extract());
                 }
                 else if (hit.collider.tag == "ENEMY")
                 {
-                    print("enemy success");
                     PaintManager.instance.pushToStack(hit.collider.GetComponent<EnemyManager>().myColour);
                     hit.collider.GetComponent<EnemyHealth>().makeDead();
                 }
