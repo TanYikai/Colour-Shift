@@ -41,7 +41,7 @@ public class BulletManager : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "BULLET" || collision.gameObject.tag == "PLAYER" || collision.gameObject.tag == "GATE")
+        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "BULLET" || collision.gameObject.tag == "PLAYER" || collision.gameObject.tag == "GATE") {
       
             Destroy(this.gameObject);
         }

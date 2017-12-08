@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour {
 
     private int livesLeft = 3;
-    private SpriteRenderer[] hearts[];
+    private SpriteRenderer[] hearts;
     public Sprite brokenHeart;
     public Sprite fullHeart;
 
