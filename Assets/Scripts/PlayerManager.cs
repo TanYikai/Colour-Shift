@@ -22,12 +22,13 @@ public class PlayerManager : MonoBehaviour {
 
     private bool invulnerable = false;
 
-
+    Animator anim;
 
     // Use this for initialization
     void Start () {
         rb = this.GetComponent<Rigidbody2D>();
         playerCol = new ColourObject(true,false,false);
+        anim = this.GetComponent<Animator>();
 	}
 
 
@@ -37,6 +38,8 @@ public class PlayerManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             speed = -defaultSpeed;
+            anim.SetInteger("State", 1); // run
+
             if (facingRight)
             {
                 Flip();
@@ -46,12 +49,15 @@ public class PlayerManager : MonoBehaviour {
         {
             if (speed != defaultSpeed)
             speed = 0;
+
         }
 
         // move left, stop
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             speed = defaultSpeed;
+            anim.SetInteger("State", 1); // run
+
             if (!facingRight)
             {
                 Flip();
@@ -61,6 +67,7 @@ public class PlayerManager : MonoBehaviour {
         {
             if (speed != -defaultSpeed)
                 speed = 0;
+
         }
 
 
@@ -69,6 +76,7 @@ public class PlayerManager : MonoBehaviour {
             if (!isJumping && rb.velocity.y >= 0)
             {
                 isJumping = true;
+                anim.SetTrigger("isJumping");
                 rb.AddForce(new Vector2(rb.velocity.x, defaultJump));
             }
         }
@@ -95,6 +103,9 @@ public class PlayerManager : MonoBehaviour {
     void MovePlayer(float playerSpeed)
     {
         rb.velocity = new Vector3(playerSpeed, rb.velocity.y, 0);
+
+        if (playerSpeed == 0)
+            anim.SetInteger("State", 0); // idle
 
     }
 
@@ -193,7 +204,9 @@ public class PlayerManager : MonoBehaviour {
         {
             hit = Physics2D.Raycast(this.transform.position, Vector3.down, 0.1f);
             if (hit)
+            {
                 isJumping = false;
+            }
 
         }
         else if (collision.gameObject.tag == "BULLET")
@@ -204,7 +217,9 @@ public class PlayerManager : MonoBehaviour {
         {
             hit = Physics2D.Raycast(this.transform.position, Vector3.down, 0.1f);
             if (hit)
+            {
                 isJumping = false;
+            }
 
             lives--;
             if (lives == 0)
