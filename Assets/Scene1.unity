@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 1540940093}
   - component: {fileID: 1540940091}
   m_Layer: 8
-  m_Name: Enemy (1)
+  m_Name: Key
   m_TagString: KEY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -774,7 +774,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!212 &1540940095
 SpriteRenderer:
   m_ObjectHideFlags: 0

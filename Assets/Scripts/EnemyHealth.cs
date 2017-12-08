@@ -13,8 +13,6 @@ public class EnemyHealth : MonoBehaviour {
 	
 	public void damage(ColourObject other)
     {
-        Debug.Log("Blue" + enemyColour.getIsBlue() + " Red" + enemyColour.getIsRed() + " Yellow" + enemyColour.getIsYellow());
-
         if (other.getIsRed())
         {
             if(other.getIsBlue()){
