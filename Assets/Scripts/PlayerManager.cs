@@ -161,13 +161,21 @@ public class PlayerManager : MonoBehaviour {
         }
         else if (collision.gameObject.tag == "MONSTER")
         {
-            this.GetComponent<PlayerHealth>().damage();
+            lives--;
+            if (lives == 0)
+            {
+                makeDead();
+            }
             if (!facingRight)
                 rb.AddForceAtPosition(new Vector2(5f, 3.75f), this.GetComponent<Transform>().position, ForceMode2D.Impulse);
             else
                 rb.AddForceAtPosition(new Vector2(-5f, 3.75f), this.GetComponent<Transform>().position, ForceMode2D.Impulse);
 
         }
-
+    }
+    void makeDead()
+    {
+        //Dead Stuff
+        Destroy(this.gameObject);
     }
 }
