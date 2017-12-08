@@ -73,7 +73,7 @@ public class PlayerManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (!isJumping && rb.velocity.y >= 0)
+            if (!isJumping && rb.velocity.y >= -0.1f)
             {
                 isJumping = true;
                 anim.SetTrigger("isJumping");
@@ -202,12 +202,11 @@ public class PlayerManager : MonoBehaviour {
         RaycastHit2D hit;
         if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY")
         {
-            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 0.1f);
-            if (hit)
+            hit = Physics2D.Raycast(this.transform.position - new Vector3(1f, 0, 0), Vector3.down, 1.5f);
+            if (hit && (hit.collider.tag == "GROUND" || hit.collider.tag == "KEY" || hit.collider.tag == "GATE"))
             {
                 isJumping = false;
             }
-
         }
         else if (collision.gameObject.tag == "BULLET")
         {
@@ -216,8 +215,9 @@ public class PlayerManager : MonoBehaviour {
         else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
         {
             hit = Physics2D.Raycast(this.transform.position, Vector3.down, 0.1f);
-            if (hit)
+            if (hit && hit.collider.tag == "MONSTER")
             {
+           
                 isJumping = false;
             }
 
@@ -238,30 +238,31 @@ public class PlayerManager : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D collision)
 	{
-        RaycastHit2D hit;
-        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY")
+        if (isJumping)
         {
-            // Do
+            if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY" || collision.gameObject.tag == "GATE")
+            {
+                if (rb.velocity.y == 0)
+                {
+                    isJumping = false;
+                }
+            }
+            else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
+            {
+                lives--;
+                if (lives == 0)
+                {
+                    makeDead();
+                }
+                /*
+               if (!facingRight)
+                   rb.AddForceAtPosition(new Vector2(1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
+               else
+                   rb.AddForceAtPosition(new Vector2(-1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
+               */
+                StartCoroutine(InvunerablePeriod());
+            }
         }
-        else if (collision.gameObject.tag == "BULLET")
-		{
-			// Do Bullet stuff
-		}
-		else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
-		{
-            lives--;
-			if (lives == 0)
-			{
-				makeDead();
-			}
-			/*
-           if (!facingRight)
-               rb.AddForceAtPosition(new Vector2(1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
-           else
-               rb.AddForceAtPosition(new Vector2(-1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
-           */
-			StartCoroutine(InvunerablePeriod());
-		}
 	}
 	void makeDead()
     {
