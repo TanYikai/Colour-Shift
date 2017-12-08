@@ -90,6 +90,7 @@ public class PlayerManager : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Z))
         {
+            anim.SetTrigger("isShooting");
             Shoot();
         }
 
@@ -235,7 +236,6 @@ public class PlayerManager : MonoBehaviour {
             hit = Physics2D.Raycast(this.transform.position, Vector3.down, 0.1f);
             if (hit && hit.collider.tag == "MONSTER")
             {
-           
                 isJumping = false;
             }
 
