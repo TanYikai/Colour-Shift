@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 63e7fe72bffa4ed45981727eeb86ddf5
-timeCreated: 1512736721
+timeCreated: 1512743105
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -107,10 +107,10 @@ TextureImporter:
       name: character_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2300
-        width: 400
-        height: 460
+        x: 48
+        y: 2340
+        width: 303
+        height: 373
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: character_1
       rect:
         serializedVersion: 2
-        x: 400
-        y: 2300
-        width: 400
-        height: 460
+        x: 451
+        y: 2340
+        width: 298
+        height: 365
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,10 +135,10 @@ TextureImporter:
       name: character_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1840
-        width: 400
-        height: 460
+        x: 56
+        y: 1881
+        width: 287
+        height: 373
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,10 +149,10 @@ TextureImporter:
       name: character_3
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1840
-        width: 400
-        height: 460
+        x: 459
+        y: 1881
+        width: 281
+        height: 373
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +163,10 @@ TextureImporter:
       name: character_4
       rect:
         serializedVersion: 2
-        x: 800
-        y: 1840
-        width: 400
-        height: 460
+        x: 856
+        y: 1881
+        width: 287
+        height: 377
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,10 +177,10 @@ TextureImporter:
       name: character_5
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 1840
-        width: 400
-        height: 460
+        x: 1259
+        y: 1881
+        width: 282
+        height: 366
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,10 +191,10 @@ TextureImporter:
       name: character_6
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 1840
-        width: 400
-        height: 460
+        x: 1656
+        y: 1881
+        width: 288
+        height: 378
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: character_7
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 1840
-        width: 400
-        height: 460
+        x: 2052
+        y: 1881
+        width: 296
+        height: 370
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,10 +219,10 @@ TextureImporter:
       name: character_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1380
-        width: 400
-        height: 460
+        x: 48
+        y: 1414
+        width: 303
+        height: 336
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,10 +233,10 @@ TextureImporter:
       name: character_9
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1380
-        width: 400
-        height: 460
+        x: 460
+        y: 1414
+        width: 279
+        height: 382
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,10 +247,10 @@ TextureImporter:
       name: character_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 1380
-        width: 400
-        height: 460
+        x: 851
+        y: 1414
+        width: 298
+        height: 382
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,10 +261,10 @@ TextureImporter:
       name: character_11
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 1380
-        width: 400
-        height: 460
+        x: 1261
+        y: 1414
+        width: 277
+        height: 351
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -275,10 +275,10 @@ TextureImporter:
       name: character_12
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 1380
-        width: 400
-        height: 460
+        x: 1651
+        y: 1414
+        width: 297
+        height: 351
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,10 +289,10 @@ TextureImporter:
       name: character_13
       rect:
         serializedVersion: 2
-        x: 0
-        y: 920
-        width: 400
-        height: 460
+        x: 48
+        y: 960
+        width: 303
+        height: 373
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -303,10 +303,10 @@ TextureImporter:
       name: character_14
       rect:
         serializedVersion: 2
-        x: 400
-        y: 920
-        width: 400
-        height: 460
+        x: 451
+        y: 960
+        width: 298
+        height: 365
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -317,10 +317,10 @@ TextureImporter:
       name: character_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 460
-        width: 400
-        height: 460
+        x: 56
+        y: 501
+        width: 287
+        height: 373
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,10 +331,10 @@ TextureImporter:
       name: character_16
       rect:
         serializedVersion: 2
-        x: 400
-        y: 460
-        width: 400
-        height: 460
+        x: 459
+        y: 501
+        width: 281
+        height: 373
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -345,10 +345,10 @@ TextureImporter:
       name: character_17
       rect:
         serializedVersion: 2
-        x: 800
-        y: 460
-        width: 400
-        height: 460
+        x: 856
+        y: 501
+        width: 287
+        height: 377
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,10 +359,10 @@ TextureImporter:
       name: character_18
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 460
-        width: 400
-        height: 460
+        x: 1259
+        y: 501
+        width: 282
+        height: 366
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,10 +373,10 @@ TextureImporter:
       name: character_19
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 460
-        width: 400
-        height: 460
+        x: 1656
+        y: 501
+        width: 288
+        height: 378
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -387,10 +387,10 @@ TextureImporter:
       name: character_20
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 460
-        width: 400
-        height: 460
+        x: 2052
+        y: 501
+        width: 296
+        height: 370
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -401,10 +401,10 @@ TextureImporter:
       name: character_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 400
-        height: 460
+        x: 48
+        y: 34
+        width: 303
+        height: 336
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -415,10 +415,10 @@ TextureImporter:
       name: character_22
       rect:
         serializedVersion: 2
-        x: 400
-        y: 0
-        width: 400
-        height: 460
+        x: 460
+        y: 34
+        width: 279
+        height: 382
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -429,10 +429,10 @@ TextureImporter:
       name: character_23
       rect:
         serializedVersion: 2
-        x: 800
-        y: 0
-        width: 400
-        height: 460
+        x: 851
+        y: 34
+        width: 298
+        height: 382
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -443,10 +443,10 @@ TextureImporter:
       name: character_24
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 400
-        height: 460
+        x: 1261
+        y: 34
+        width: 277
+        height: 351
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -457,10 +457,10 @@ TextureImporter:
       name: character_25
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 0
-        width: 400
-        height: 460
+        x: 1651
+        y: 34
+        width: 297
+        height: 351
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
