@@ -34,7 +34,6 @@ public class PlayerManager : MonoBehaviour {
         {
             if (facingRight)
             {
-                facingRight = false;
                 Flip();
             }
             speed = -defaultSpeed;
@@ -49,7 +48,6 @@ public class PlayerManager : MonoBehaviour {
         {
             if (!facingRight)
             {
-                facingRight = true;
                 Flip();
             }
             speed = defaultSpeed;
@@ -83,7 +81,7 @@ public class PlayerManager : MonoBehaviour {
     }
 
     void MovePlayer(float playerSpeed) {
-        //rb.velocity = new Vector3(playerSpeed, rb.velocity.y, 0);
+        rb.velocity = new Vector3(playerSpeed, rb.velocity.y, 0);
     }
 
     void Flip()
