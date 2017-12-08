@@ -59,7 +59,6 @@ public class PaintManager : MonoBehaviour {
 	 **/
 	public void pushToStack(ColourObject colour)
 	{
-		print(paintStack.Count);
 		if (paintStack.Count < MAX_STACK_CAPACITY && paintStack.Count >= 0)
 		{
 			paintStack.Push(colour);
