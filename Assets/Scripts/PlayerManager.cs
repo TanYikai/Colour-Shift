@@ -176,4 +176,12 @@ public class PlayerManager : MonoBehaviour {
         //Dead Stuff
         Destroy(this.gameObject);
     }
+
+	/**
+	 * Returns the ColourObject of the player
+	 */
+	public ColourObject getPlayerColour()
+	{
+		return this.playerCol;
+	}
 }

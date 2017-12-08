@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour {
     Transform myTrans;
     public LayerMask enemyMask;
 
-    bool toRight = true;
+    bool toRight = false;
     bool changedDirection = true;
     public float changeTime = 2;
     public float speed = 1;
@@ -41,7 +41,7 @@ public class EnemyManager : MonoBehaviour {
 
         Debug.DrawLine(lineCastPos, lineCastPos + Vector2.down);
         //Cast line to check grounded
-        bool isGrounded = !Physics2D.Linecast(lineCastPos, lineCastPos + Vector2.down, enemyMask);
+        bool isGrounded = Physics2D.Linecast(lineCastPos, lineCastPos + Vector2.down, enemyMask);
 
         Debug.DrawLine(lineCastPos, lineCastPos - new Vector2(myTrans.right.x, myTrans.right.y) * .05f);
         //Case line to check if blocked

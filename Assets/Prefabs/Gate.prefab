@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23189880360350880}
   - component: {fileID: 50024509185531170}
   - component: {fileID: 61153794321469204}
+  - component: {fileID: 114830346378138926}
   m_Layer: 0
   m_Name: Gate
   m_TagString: GROUND
@@ -129,3 +130,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114830346378138926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212352943960302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e615b6311bf615048959725a95e3ee50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colour: Blue
+  isColliderEnabled: 1
+  player: {fileID: 0}

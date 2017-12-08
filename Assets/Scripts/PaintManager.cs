@@ -5,17 +5,18 @@ using UnityEngine;
 
 public class PaintManager : MonoBehaviour {
 
+	private static PaintManager instance;
 	private Stack<ColourObject> paintStack = new Stack<ColourObject>();
-	
 
 	private List<GameObject> bars = new List<GameObject>();
-
 
 	int MAX_STACK_CAPACITY = 5;
 	int MIN_TO_MERGE = 2;
 
 	// Use this for initialization
 	void Start () {
+		instance = this;
+
 		//Sample
 		paintStack.Push(new ColourObject(true, false, false));
 		paintStack.Push(new ColourObject(false, false, true));
