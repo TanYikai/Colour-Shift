@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour {
+public class BulletManager : MonoBehaviour
+{
 
     public float bulletSpeed;
     public float lifeTime;
@@ -25,7 +26,7 @@ public class BulletManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void Awake()
@@ -50,8 +51,17 @@ public class BulletManager : MonoBehaviour {
         }
         if (collision.gameObject.tag == "MONSTER")
         {
-            Debug.Log("Blue" + bulletCol.getIsBlue()+" Red"+bulletCol.getIsRed()+" Yellow"+bulletCol.getIsYellow());
-             collision.gameObject.GetComponent<EnemyHealth>().damage(bulletCol);
+            Debug.Log("Blue" + bulletCol.getIsBlue() + " Red" + bulletCol.getIsRed() + " Yellow" + bulletCol.getIsYellow());
+            collision.gameObject.GetComponent<EnemyHealth>().damage(bulletCol);
+            Destroy(this.gameObject);
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "MONSTER")
+        {
+            Destroy(this.gameObject);
+
         }
     }
 }
