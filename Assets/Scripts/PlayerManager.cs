@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour {
     public float defaultJump;
     public float maxRange;
     private float speed;
-    public int lives = 3;
+    public int lives;
     public float fireRate;
     public float nextFire;
 
@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour {
 
     void Update()
     {
-        // move right, stop
+        // move right
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             speed = -defaultSpeed;
@@ -75,7 +75,6 @@ public class PlayerManager : MonoBehaviour {
 
         MovePlayer(speed);
 
-        // Left mouse button
         if (Input.GetKey(KeyCode.X))
         {
             Extract();
@@ -84,6 +83,11 @@ public class PlayerManager : MonoBehaviour {
         if (Input.GetKey(KeyCode.Z))
         {
             Shoot();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            PaintMyself();
         }
 
     }
@@ -107,6 +111,11 @@ public class PlayerManager : MonoBehaviour {
 
     void Extract() {
 
+        if (PaintManager.instance.getStackSize() == 5)
+        {
+            return;
+        }
+
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
@@ -122,29 +131,20 @@ public class PlayerManager : MonoBehaviour {
                 dirRay = Vector3.left;
             }
 
-
-            hit = Physics2D.Raycast(new Vector2(gunTip.position.x, gunTip.position.y), dirRay, 5);
-
+            hit = Physics2D.Raycast(new Vector2(gunTip.position.x, gunTip.position.y), dirRay, maxRange);
 
             if (hit)
             {
-                print("hitted" + hit.collider.name);
                 if (hit.collider.tag == "KEY")
                 {
-                    print("key success");
-
-                    PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().ReturnCol());
+                    if (hit.collider.GetComponent<KeyManager>().canGive())
+                        PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().Extract());
                 }
                 else if (hit.collider.tag == "ENEMY")
                 {
-                    print("enemy success");
                     PaintManager.instance.pushToStack(hit.collider.GetComponent<EnemyManager>().myColour);
                     hit.collider.GetComponent<EnemyHealth>().makeDead();
                 }
-            }
-            else
-            {
-                print("missed");
             }
         }
             
@@ -168,25 +168,42 @@ public class PlayerManager : MonoBehaviour {
                 bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
             }
 
-            bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
+            if (PaintManager.instance.getStackSize() > 0)
+                bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
         }
     }
 
- 
+    void PaintMyself()
+    {
+        if (Time.time > nextFire)
+        {
+            if (PaintManager.instance.getStackSize() > 0)
+            {
+                playerCol = PaintManager.instance.popFromStack();
+            }
+        }
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "GROUND" && rb.velocity.y < 0)
+        RaycastHit2D hit;
+        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY")
         {
-            isJumping = false;
-            //speed = 0;
+            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
+            if (hit)
+                isJumping = false;
+
         }
         else if (collision.gameObject.tag == "BULLET")
         {
             // Do Bullet stuff
         }
-        else if (collision.gameObject.tag == "MONSTER")
+        else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
         {
+            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
+            if (hit)
+                isJumping = false;
+
             lives--;
             if (lives == 0)
             {
@@ -201,7 +218,38 @@ public class PlayerManager : MonoBehaviour {
             StartCoroutine(InvunerablePeriod());
         }
     }
-    void makeDead()
+
+	void OnCollisionStay2D(Collision2D collision)
+	{
+        RaycastHit2D hit;
+        if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY")
+        {
+            hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
+            if (hit)
+                isJumping = false;
+
+        }
+        else if (collision.gameObject.tag == "BULLET")
+		{
+			// Do Bullet stuff
+		}
+		else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
+		{
+			lives--;
+			if (lives == 0)
+			{
+				makeDead();
+			}
+			/*
+           if (!facingRight)
+               rb.AddForceAtPosition(new Vector2(1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
+           else
+               rb.AddForceAtPosition(new Vector2(-1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
+           */
+			StartCoroutine(InvunerablePeriod());
+		}
+	}
+	void makeDead()
     {
         //Dead Stuff
         Destroy(this.gameObject);
@@ -219,7 +267,7 @@ public class PlayerManager : MonoBehaviour {
         invulnerable = true;
         this.gameObject.layer = 9;
         //Add animation 
-        yield return new WaitForSecondsRealtime(10);
+        yield return new WaitForSecondsRealtime(1);
         invulnerable = false;
         this.gameObject.layer = 0;
     }

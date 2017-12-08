@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour {
     bool isDead = false;
 	// Use this for initialization
 	void Start () {
-        enemyColour = this.GetComponent<EnemyManager>().myColour;
+        enemyColour = this.gameObject.GetComponent<EnemyManager>().myColour;
 	}
 	
 	public void damage(ColourObject other)
@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour {
                 else if (enemyColour.getIsYellow())
                     makeDead();
             }
-            if (other.getIsYellow())
+            else if (other.getIsYellow())
             {
                 if (enemyColour.getIsBlue())
                     makeDead();
