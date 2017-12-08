@@ -188,7 +188,7 @@ public class PlayerManager : MonoBehaviour {
         {
             // Do Bullet stuff
         }
-        else if (collision.gameObject.tag == "MONSTER")
+        else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
         {
             hit = Physics2D.Raycast(this.transform.position, Vector3.down, 1);
             if (hit)
@@ -208,7 +208,35 @@ public class PlayerManager : MonoBehaviour {
             StartCoroutine(InvunerablePeriod());
         }
     }
-    void makeDead()
+
+	void OnCollisionStay2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "GROUND" && rb.velocity.y <= 0)
+		{
+			isJumping = false;
+			//speed = 0;
+		}
+		else if (collision.gameObject.tag == "BULLET")
+		{
+			// Do Bullet stuff
+		}
+		else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
+		{
+			lives--;
+			if (lives == 0)
+			{
+				makeDead();
+			}
+			/*
+           if (!facingRight)
+               rb.AddForceAtPosition(new Vector2(1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
+           else
+               rb.AddForceAtPosition(new Vector2(-1.5f, 0.2f), this.gameObject.GetComponent<Transform>().position, ForceMode2D.Impulse);
+           */
+			StartCoroutine(InvunerablePeriod());
+		}
+	}
+	void makeDead()
     {
         //Dead Stuff
         Destroy(this.gameObject);
@@ -226,7 +254,7 @@ public class PlayerManager : MonoBehaviour {
         invulnerable = true;
         this.gameObject.layer = 9;
         //Add animation 
-        yield return new WaitForSecondsRealtime(10);
+        yield return new WaitForSecondsRealtime(1);
         invulnerable = false;
         this.gameObject.layer = 0;
     }

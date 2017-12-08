@@ -7,16 +7,21 @@ public class GateManager : MonoBehaviour {
 	public static GateManager instance;
 	public string colour;
 	public GameObject player;
+	private GameObject trigger;
 
 	// Use this for initialization
 	void Start () {
 		instance = this;
 		player = GameObject.Find("Player");
-		
+		trigger = transform.Find("GateTrigger").gameObject;
 	}
 
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			colour = "Blue";
+		}
 		setColour(colour);
 	}
 
@@ -26,7 +31,14 @@ public class GateManager : MonoBehaviour {
 		{
 			if (player.GetComponent<PlayerManager>().getPlayerColour().colourName().Equals(colour))
 			{
-				Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
+				other.gameObject.layer = 8;
+				this.gameObject.layer = 9;
+				Physics.IgnoreLayerCollision(8, 9);
+			}
+			else
+			{
+				other.gameObject.layer = 0;
+				this.gameObject.layer = 0;
 			}
 		}
 	}
@@ -65,5 +77,15 @@ public class GateManager : MonoBehaviour {
 		{
 			this.gameObject.GetComponent<Renderer>().material.color = Color.black;
 		}
+	}
+	
+	public string GetColour()
+	{
+		return colour;
+	}
+
+	public GameObject GetPlayer()
+	{
+		return player;
 	}
 }
