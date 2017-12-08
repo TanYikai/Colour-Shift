@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour {
     public int lives = 3;
 
     public bool isJumping;
-    private bool facingRight;
+    private bool facingRight = true;
 
     public Transform gunTip;
     public Rigidbody2D rb;
@@ -26,62 +26,65 @@ public class PlayerManager : MonoBehaviour {
         rb = this.GetComponent<Rigidbody2D>();
         playerCol = new ColourObject(true,false,false);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if (facingRight)
-            {
-                Flip();
-            }
-            speed = -defaultSpeed;
-        }
 
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            speed = 0;
-        }
+    private void FixedUpdate()
+    {
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (!facingRight)
-            {
-                Flip();
-            }
-            speed = defaultSpeed;
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            speed = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-
-            isJumping = true;
-            rb.AddForce(new Vector2(rb.velocity.x, defaultJump));
-
-        }
 
         // Left mouse button
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.X))
         {
             Extract();
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetKey(KeyCode.Z))
         {
             Shoot();
         }
-
-        MovePlayer(speed);
-        
     }
 
-    void MovePlayer(float playerSpeed) {
+    void Update()
+    {
+                       // move right, stop
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            speed = -defaultSpeed;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            if (speed != defaultSpeed)
+            speed = 0;
+        }
+
+        // move left, stop
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            speed = defaultSpeed;
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            if (speed != -defaultSpeed)
+                speed = 0;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (!isJumping)
+            {
+                isJumping = true;
+                rb.AddForce(new Vector2(rb.velocity.x, defaultJump));
+            }
+        }
+
+        MovePlayer(speed);
+
+    }
+
+    void MovePlayer(float playerSpeed)
+    {
         rb.velocity = new Vector3(playerSpeed, rb.velocity.y, 0);
+
     }
 
     void Flip()
@@ -131,12 +134,10 @@ public class PlayerManager : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "GROUND" && rb.velocity.y == 0)
+        if (collision.gameObject.tag == "GROUND" && rb.velocity.y < 0)
         {
-            //ButtonMovement.isJumping = false;  // landed
             isJumping = false;
-            speed = 0;
-            //anim.SetInteger("State", 1);
+            //speed = 0;
         }
         else if (collision.gameObject.tag == "BULLET")
         {
