@@ -85,7 +85,7 @@ public class PlayerManager : MonoBehaviour {
             Shoot();
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             PaintMyself();
         }
@@ -175,9 +175,12 @@ public class PlayerManager : MonoBehaviour {
 
     void PaintMyself()
     {
-        if (PaintManager.instance.getStackSize() > 0)
+        if (Time.time > nextFire)
         {
-            playerCol = PaintManager.instance.popFromStack();
+            if (PaintManager.instance.getStackSize() > 0)
+            {
+                playerCol = PaintManager.instance.popFromStack();
+            }
         }
     }
 
