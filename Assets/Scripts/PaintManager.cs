@@ -6,6 +6,9 @@ using UnityEngine;
 public class PaintManager : MonoBehaviour {
 
 	public static PaintManager instance;
+    public List<Sprite> listOfSprites = new List<Sprite>();
+    public GameObject stackBar;
+
 	private Stack<ColourObject> paintStack = new Stack<ColourObject>();
 
 	private List<GameObject> bars = new List<GameObject>();
@@ -18,23 +21,23 @@ public class PaintManager : MonoBehaviour {
 		instance = this;
 
 		//Sample
-		paintStack.Push(new ColourObject(true, false, false));
-		paintStack.Push(new ColourObject(false, false, true));
-		paintStack.Push(new ColourObject(true, false, true));
-		paintStack.Push(new ColourObject(false, true, false));
-		paintStack.Push(new ColourObject(false, false, true));
+		//paintStack.Push(new ColourObject(true, false, false));
+		//paintStack.Push(new ColourObject(false, false, true));
+		//paintStack.Push(new ColourObject(true, false, true));
+		//paintStack.Push(new ColourObject(false, true, false));
+		//paintStack.Push(new ColourObject(false, false, true));
 
-		GameObject barZero = GameObject.Find("Stack 0");
-		GameObject barOne = GameObject.Find("Stack 1");
-		GameObject barTwo = GameObject.Find("Stack 2");
-		GameObject barThree = GameObject.Find("Stack 3");
-		GameObject barFour = GameObject.Find("Stack 4");
+		//GameObject barZero = GameObject.Find("Stack 0");
+		//GameObject barOne = GameObject.Find("Stack 1");
+		//GameObject barTwo = GameObject.Find("Stack 2");
+		//GameObject barThree = GameObject.Find("Stack 3");
+		//GameObject barFour = GameObject.Find("Stack 4");
 
-		bars.Add(barZero);
-		bars.Add(barOne);
-		bars.Add(barTwo);
-		bars.Add(barThree);
-		bars.Add(barFour);
+		//bars.Add(barZero);
+		//bars.Add(barOne);
+		//bars.Add(barTwo);
+		//bars.Add(barThree);
+		//bars.Add(barFour);
 	}
 
 	// Update is called once per frame
@@ -43,15 +46,15 @@ public class PaintManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.C)) {
 			mergeStack();
 		}
-		ColourObject[] stackArray = paintArray();
-		for (i = 0; i < stackArray.Length; i++)
-		{
-			setColour(bars[i], stackArray[stackArray.Length - 1 - i]);
-		}
-		for (int j = stackArray.Length; j < MAX_STACK_CAPACITY; j++)
-		{
-			setColour(bars[j], new ColourObject(false, false, false));
-		}
+		//ColourObject[] stackArray = paintArray();
+		//for (i = 0; i < stackArray.Length; i++)
+		//{
+  //          setColour(bars[i], stackArray[stackArray.Length - 1 - i]);
+  //      }
+		//for (int j = stackArray.Length; j < MAX_STACK_CAPACITY; j++)
+		//{
+  //          setColour(bars[j], new ColourObject(false, false, false));
+  //      }
 	}
 
 	/**
