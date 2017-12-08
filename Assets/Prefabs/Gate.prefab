@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114830346378138926}
   m_Layer: 0
   m_Name: Gate
-  m_TagString: GROUND
+  m_TagString: MONSTER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e615b6311bf615048959725a95e3ee50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colour: Blue
-  isColliderEnabled: 1
+  colour: Red
   player: {fileID: 0}
