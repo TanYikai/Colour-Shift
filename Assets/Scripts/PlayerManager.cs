@@ -106,6 +106,12 @@ public class PlayerManager : MonoBehaviour {
 
     void Extract() {
 
+        if (PaintManager.instance.getStackSize() == 5)
+        {
+            print("Error, stack full");
+            return;
+        }
+
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
@@ -127,7 +133,8 @@ public class PlayerManager : MonoBehaviour {
             {
                 if (hit.collider.tag == "KEY")
                 {
-                    PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().Extract());
+                    if (hit.collider.GetComponent<KeyManager>().canGive())
+                        PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().Extract());
                 }
                 else if (hit.collider.tag == "ENEMY")
                 {

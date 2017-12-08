@@ -23,10 +23,22 @@ public class KeyManager : MonoBehaviour {
 
     public ColourObject Extract()
     {
-        if (--count == 0)
-           this.GetComponent<Renderer>().material.color = Color.black;
+
+        if (count > 0)
+        {
+            count--;
+        }
+
+        if (count == 0)
+        {
+            this.GetComponent<Renderer>().material.color = Color.black;
+        }
 
         return keyCol;
+    }
+
+    public bool canGive() {
+        return !(count == 0);
     }
 
 }
