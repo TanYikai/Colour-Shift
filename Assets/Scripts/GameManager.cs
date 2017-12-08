@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance;
     public bool objectiveMet = false;
     public GameObject portal;
+
+    int SceneNo = 1;
 	// Use this for initialization
 	void Start () {
         //Basically make sure that there is only one Instance of SaveManager
@@ -25,6 +27,15 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //For Scene Management 
+        if (SceneManager.GetActiveScene().name == "Scene1"&&SceneNo!=1)
+        {
+            SceneNo = 1;
+        }
+        else if (SceneManager.GetActiveScene().name != "MainMenu" && SceneNo != 0)
+        {
+            SceneNo = 0;
+        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene("Scene1");
