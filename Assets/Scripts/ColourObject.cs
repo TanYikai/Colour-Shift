@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ColourObject{
 
-	private Boolean isRed;
-	private Boolean isBlue;
-	private Boolean isYellow;
+	public Boolean isRed;
+	public Boolean isBlue;
+	public Boolean isYellow;
 
 	public static string RED_NAME = "Red";
 	public static string BLUE_NAME = "Blue";
