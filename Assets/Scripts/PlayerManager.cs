@@ -145,6 +145,7 @@ public class PlayerManager : MonoBehaviour {
                     PaintManager.instance.pushToStack(hit.collider.GetComponent<EnemyManager>().myColour);
                     hit.collider.GetComponent<EnemyHealth>().makeDead();
                 }
+                SFXManager.PlaySound("PowerUp");
             }
         }
             
@@ -170,6 +171,7 @@ public class PlayerManager : MonoBehaviour {
 
             if (PaintManager.instance.getStackSize() > 0)
                 bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
+            SFXManager.PlaySound("GunShot");
         }
     }
 
