@@ -7,8 +7,12 @@ public class EnemyManager : MonoBehaviour {
     Rigidbody2D myRB;
     Animator myAnim;
     Transform myTrans;
-    public LayerMask enemyMask;
 
+    public bool red;
+    public bool blue;
+    public bool yellow;
+
+    public LayerMask enemyMask;
     bool toRight = false;
     bool changedDirection = true;
     public float changeTime = 2;
@@ -18,11 +22,28 @@ public class EnemyManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        myColour = new ColourObject(red, blue, yellow);
+  
+
         myRB = this.GetComponent<Rigidbody2D>();
         myAnim = this.GetComponent<Animator>();
         myTrans = this.GetComponent<Transform>();
         //StartCoroutine(changeDirectionAfter(changeTime)); //Use to change direction after time instead of collision
-	}
+        if (myColour.getIsRed())
+        {
+            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Red/red");
+        }
+        else if (myColour.getIsBlue())
+        {
+            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Blue/monster_0");
+
+        }
+        else if (myColour.getIsYellow())
+        {
+            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Yellow/yellow");
+
+        }
+    }
 	
 	// Update is called once per fraction of sec
 	void FixedUpdate () {
