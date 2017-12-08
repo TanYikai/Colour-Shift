@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour {
     public GameObject bullet;
     private ColourObject playerCol;
     
+    
 
 
     // Use this for initialization
@@ -106,11 +107,26 @@ public class PlayerManager : MonoBehaviour {
         Collider[] colliders = Physics.OverlapSphere(new Vector3(mouseX, mouseY, 0), 0.1f);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject.CompareTag("Colour"))
+            if (colliders[i].gameObject.CompareTag("KEY"))
             {
                 if (Mathf.Abs(mouseX - currPosX) < maxRange && Mathf.Abs(mouseY - currPosY) < maxRange)
                 {
-                    // Do Extraction
+                    //PaintManager.instance.pushToStack(colliders[i].gameObject.GetComponent<KeyManager>().ReturnCol());
+
+                }
+            }
+            else if (colliders[i].gameObject.CompareTag("WALL"))
+            {
+                if (Mathf.Abs(mouseX - currPosX) < maxRange && Mathf.Abs(mouseY - currPosY) < maxRange)
+                {
+                    //PaintManager.instance.pushToStack(colliders[i].gameObject.GetComponent<WallManager>().ReturnCol());
+                }
+            }
+            else if (colliders[i].gameObject.CompareTag("ENEMY"))
+            {
+                if (Mathf.Abs(mouseX - currPosX) < maxRange && Mathf.Abs(mouseY - currPosY) < maxRange) {
+                
+                    //PaintManager.instance.pushToStack(colliders[i].gameObject.GetComponent<EnemyManager>().ReturnCol());
                 }
             }
         }
