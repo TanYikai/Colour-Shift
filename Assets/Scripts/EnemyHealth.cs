@@ -54,6 +54,12 @@ public class EnemyHealth : MonoBehaviour {
             {
                 if (enemyColour.getIsRed()) // Enemy has red
                     makeDead();
+                else if (enemyColour.getIsBlue() || enemyColour.getIsYellow()) // Bullet is green and enemy has Blue or Yellow but no red
+                {
+                    enemyColour.isBlue = true;
+                    enemyColour.isYellow = true;
+                    this.gameObject.GetComponent<EnemyManager>().UpdateCol();
+                }
             }
             else if (enemyColour.getIsYellow())  // Bullet is blue and Enemy has yellow
             {
