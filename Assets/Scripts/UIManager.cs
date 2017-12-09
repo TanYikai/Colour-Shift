@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-    private int livesLeft = 3;
-    private SpriteRenderer[] hearts;
+    private int livesLeft;
+    private Image[] hearts;
     public Sprite brokenHeart;
     public Sprite fullHeart;
 
-    private static UIManager instance;
+    public static UIManager instance;
 
 	// Use this for initialization
 	void Start () {
-        hearts = this.GetComponentsInChildren<SpriteRenderer>();
+        livesLeft = 3;
+        hearts = this.GetComponentsInChildren<Image>();
         instance = this;
 	}
 
@@ -28,9 +29,12 @@ public class UIManager : MonoBehaviour {
 		
 	}
 
-    public void breakHeart() 
+    public void breakHeart()
     {
         if (livesLeft != 0)
-            hearts[--livesLeft].sprite = brokenHeart;
+        {
+            livesLeft--;
+            hearts[livesLeft].sprite = brokenHeart;
+        }
     }
 }

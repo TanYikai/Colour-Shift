@@ -265,6 +265,7 @@ public class PlayerManager : MonoBehaviour
             }
 
             lives--;
+            UIManager.instance.breakHeart();
             if (lives == 0)
             {
                 makeDead();
@@ -293,6 +294,7 @@ public class PlayerManager : MonoBehaviour
             else if (collision.gameObject.tag == "MONSTER" && !invulnerable)
             {
                 lives--;
+                UIManager.instance.breakHeart();
                 if (lives == 0)
                 {
                     makeDead();
