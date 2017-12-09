@@ -8,6 +8,8 @@ public class SFXManager : MonoBehaviour
     public static AudioClip EnemyDamaged;
     public static AudioClip GunShot;
     public static AudioClip Powerup;
+    public static AudioClip BGM;
+
     public static bool muteSfx;
 
     static AudioSource audioSrc;
@@ -20,7 +22,7 @@ public class SFXManager : MonoBehaviour
         Powerup = Resources.Load<AudioClip>("Sound/Powerup");
 
         audioSrc = GetComponent<AudioSource>();
-
+        
     }
 
     public static void PlaySound(string clip)

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour {
+public class PlayerManager : MonoBehaviour
+{
 
     public float defaultSpeed;
     public float defaultJump;
@@ -25,11 +26,12 @@ public class PlayerManager : MonoBehaviour {
     Animator anim;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb = this.GetComponent<Rigidbody2D>();
-        playerCol = new ColourObject(true,false,false);
+        playerCol = new ColourObject(true, false, false);
         anim = this.GetComponent<Animator>();
-	}
+    }
 
 
     void Update()
@@ -48,7 +50,7 @@ public class PlayerManager : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             if (speed != defaultSpeed)
-            speed = 0;
+                speed = 0;
 
         }
 
@@ -121,7 +123,8 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    void Extract() {
+    void Extract()
+    {
 
         if (PaintManager.instance.getStackSize() == 5)
         {
@@ -142,8 +145,8 @@ public class PlayerManager : MonoBehaviour {
             {
                 dirRay = Vector3.left;
             }
-
-            hit = Physics2D.Raycast(new Vector2(gunTip.position.x, gunTip.position.y), dirRay, maxRange);
+            Debug.DrawRay(new Vector2(gunTip.position.x+0.75f * dirRay.x, gunTip.position.y+0.75f), dirRay);
+            hit = Physics2D.Raycast(new Vector2(gunTip.position.x + 0.75f * dirRay.x, gunTip.position.y + 0.75f), dirRay);
 
             if (hit)
             {
@@ -152,7 +155,7 @@ public class PlayerManager : MonoBehaviour {
                     if (hit.collider.GetComponent<KeyManager>().canGive())
                         PaintManager.instance.pushToStack(hit.collider.GetComponent<KeyManager>().Extract());
                 }
-                else if (hit.collider.tag == "ENEMY")
+                else if (hit.collider.tag == "MONSTER")
                 {
                     PaintManager.instance.pushToStack(hit.collider.GetComponent<EnemyManager>().myColour);
                     hit.collider.GetComponent<EnemyHealth>().makeDead();
@@ -160,22 +163,27 @@ public class PlayerManager : MonoBehaviour {
                 SFXManager.PlaySound("PowerUp");
             }
         }
-            
+
     }
 
-    void Shoot() {
+    void Shoot()
+    {
 
         GameObject bullet;
-        
-        if (PaintManager.instance.getStackSize() > 0 && Time.time > nextFire)
+
+        if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
 
+
             if (facingRight)
+            {
                 bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+            }
             else
-                bullet = Instantiate(bulletPrefab, gunTip.position - new Vector3(1,0,0), Quaternion.Euler(new Vector3(0, 0, 0)));
-            bullet.GetComponent<BulletManager>().facingRight = facingRight;
+            {
+                bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
+            }
 
             if (PaintManager.instance.getStackSize() > 0)
                 bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
@@ -250,8 +258,8 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-	void OnCollisionStay2D(Collision2D collision)
-	{
+    void OnCollisionStay2D(Collision2D collision)
+    {
         if (isJumping)
         {
             if (collision.gameObject.tag == "GROUND" || collision.gameObject.tag == "KEY" || collision.gameObject.tag == "GATE")
@@ -277,20 +285,20 @@ public class PlayerManager : MonoBehaviour {
                 StartCoroutine(InvunerablePeriod());
             }
         }
-	}
-	void makeDead()
+    }
+    void makeDead()
     {
         //Dead Stuff
         Destroy(this.gameObject);
     }
 
-	/**
+    /**
 	 * Returns the ColourObject of the player
 	 */
-	public ColourObject getPlayerColour()
-	{
-		return this.playerCol;
-	}
+    public ColourObject getPlayerColour()
+    {
+        return this.playerCol;
+    }
     IEnumerator InvunerablePeriod()
     {
         invulnerable = true;
@@ -301,3 +309,4 @@ public class PlayerManager : MonoBehaviour {
         this.gameObject.layer = 0;
     }
 }
+    

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PaintManager : MonoBehaviour {
-
+    public int size;
 	public static PaintManager instance;
     public List<Sprite> listOfSprites = new List<Sprite>();
-    public GameObject stackBar;
+    public List<GameObject> listOfBlocks = new List<GameObject>();
 
 	private Stack<ColourObject> paintStack = new Stack<ColourObject>();
 
@@ -20,28 +20,29 @@ public class PaintManager : MonoBehaviour {
 	void Start () {
 		instance = this;
 
-		//Sample
-		paintStack.Push(new ColourObject(true, false, false));
-		paintStack.Push(new ColourObject(false, false, true));
-		paintStack.Push(new ColourObject(true, false, true));
-		paintStack.Push(new ColourObject(false, true, false));
-		paintStack.Push(new ColourObject(false, false, true));
+        //Sample
+        pushColor(new ColourObject(true, false, false));
+        pushColor(new ColourObject(false, false, true));
+        pushColor(new ColourObject(true, false, true));
+        pushColor(new ColourObject(false, true, false));
+        pushColor(new ColourObject(false, false, true));
 
-		GameObject barZero = GameObject.Find("Stack 0");
-		GameObject barOne = GameObject.Find("Stack 1");
-		GameObject barTwo = GameObject.Find("Stack 2");
-		GameObject barThree = GameObject.Find("Stack 3");
-		GameObject barFour = GameObject.Find("Stack 4");
+		//GameObject barZero = GameObject.Find("Stack 0");
+		//GameObject barOne = GameObject.Find("Stack 1");
+		//GameObject barTwo = GameObject.Find("Stack 2");
+		//GameObject barThree = GameObject.Find("Stack 3");
+		//GameObject barFour = GameObject.Find("Stack 4");
 
-		bars.Add(barZero);
-		bars.Add(barOne);
-		bars.Add(barTwo);
-		bars.Add(barThree);
-		bars.Add(barFour);
+		//bars.Add(barZero);
+		//bars.Add(barOne);
+		//bars.Add(barTwo);
+		//bars.Add(barThree);
+		//bars.Add(barFour);
 	}
 
 	// Update is called once per frame
 	void Update () {
+        size = paintStack.Count;
 		int i = 0;
 		if (Input.GetKeyDown(KeyCode.C)) {
 			mergeStack();
@@ -60,11 +61,12 @@ public class PaintManager : MonoBehaviour {
 	/**
 	 * Adds a colour to the stack if it is not full, does nothing if it is
 	 **/
-	public void pushToStack(ColourObject colour)
+	public void pushToStack(ColourObject colourObject)
 	{
 		if (paintStack.Count < MAX_STACK_CAPACITY && paintStack.Count >= 0)
 		{
-			paintStack.Push(colour);
+            pushColor(colourObject);
+
 		}
 		else
 		{
@@ -77,7 +79,8 @@ public class PaintManager : MonoBehaviour {
 	 **/
 	public ColourObject popFromStack()
 	{
-		return paintStack.Pop();
+        listOfBlocks[paintStack.Count-1].SetActive(false);
+        return paintStack.Pop();
 	}
 
 	//Merges the top 2 colours in the stack
@@ -85,8 +88,8 @@ public class PaintManager : MonoBehaviour {
 	{
 		//Cannot merge less than 2 colours
 		if (paintStack.Count >= MIN_TO_MERGE && paintStack.Count <= MAX_STACK_CAPACITY) {
-			ColourObject firstColor = paintStack.Pop();
-			ColourObject secondColor = paintStack.Pop();
+			ColourObject firstColor = popFromStack();
+			ColourObject secondColor = popFromStack();
 
 			List<string> colourNames = new List<string>();
 			colourNames.Add(firstColor.colourName());
@@ -156,18 +159,57 @@ public class PaintManager : MonoBehaviour {
 					canMerge = true;
 				}
 			}
-			
-			if (canMerge) {
-				//If can merge, push the merged colour in
-				paintStack.Push(newColour);
-			}
+            if (canMerge) {
+                //If can merge, push the merged colour in
+                pushColor(newColour);
+               
+            }
 			else {
-				// If cannot merge, just push back the original two colours
-				paintStack.Push(secondColor);
-				paintStack.Push(firstColor);
+                // If cannot merge, just push back the original two colours
+                pushColor(secondColor);
+                pushColor(firstColor);
 			}
 		}
 	}
+    void pushColor(ColourObject newColour)
+    {
+        GameObject gobject = listOfBlocks[paintStack.Count];
+
+        if(gobject.activeSelf == false)
+        {
+            gobject.SetActive(true);
+        }
+
+        if (newColour.colourName() == ColourObject.RED_NAME)
+        {
+            gobject.GetComponent<UnityEngine.UI.Image>().overrideSprite = listOfSprites[0];
+        }
+        else if (newColour.colourName() == ColourObject.BLUE_NAME)
+        {
+            gobject.GetComponent<UnityEngine.UI.Image>().overrideSprite = listOfSprites[2];
+        }
+        else if (newColour.colourName() == ColourObject.GREEN_NAME)
+        {
+            gobject.GetComponent<UnityEngine.UI.Image>().overrideSprite = listOfSprites[5];
+        }
+        else if (newColour.colourName() == ColourObject.PURPLE_NAME)
+        {
+            gobject.GetComponent<UnityEngine.UI.Image>().overrideSprite = listOfSprites[3];
+        }
+        else if (newColour.colourName() == ColourObject.ORANGE_NAME)
+        {
+            gobject.GetComponent<UnityEngine.UI.Image>().overrideSprite = listOfSprites[4];
+        }
+        else if (newColour.colourName() == ColourObject.YELLOW_NAME)
+        {
+            gobject.GetComponent<UnityEngine.UI.Image>().overrideSprite = listOfSprites[1];
+        }
+        else if (newColour.colourName() == ColourObject.WHITE_NAME)
+        {
+            gobject.GetComponent<UnityEngine.UI.Image>().overrideSprite = listOfSprites[6];
+        }
+        paintStack.Push(newColour);
+    }
 
 	//Provides an array representation of the stack
 	public ColourObject[] paintArray()
