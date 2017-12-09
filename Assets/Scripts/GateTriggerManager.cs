@@ -25,11 +25,11 @@ public class GateTriggerManager : MonoBehaviour {
 				print("2");
 				if (isLeftGate)
 				{
-					parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(-0.05f, 0, 0);
+					parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(-0.1f, 0, 0);
 				}
 				else
 				{
-					parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(0.05f, 0, 0);
+					parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(0.1f, 0, 0);
 				}
 				parentGate.gameObject.layer = 0;
 				other.gameObject.layer = 0;
