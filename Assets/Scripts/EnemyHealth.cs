@@ -13,38 +13,60 @@ public class EnemyHealth : MonoBehaviour {
 	
 	public void damage(ColourObject other)
     {
-        if (other.getIsRed())
+        if (other.getIsRed())               // Bullet has red
         {
-            if(other.getIsBlue()){
-                if (other.getIsYellow())
+            if (other.getIsBlue())
+            {          // Bullet has red and blue
+                if (other.getIsYellow())    // Bullet is white
                     makeDead();
-                else if (enemyColour.getIsYellow())
+                else if (enemyColour.getIsYellow()) // Bullet is purple and Enemy has yellow
                     makeDead();
+                else if (enemyColour.getIsRed() || enemyColour.getIsBlue()) // Bullet is purple and enemy has Red or Blue and no Yellow
+                {
+                    enemyColour.isRed = true;
+                    enemyColour.isBlue = true;
+                    this.gameObject.GetComponent<EnemyManager>().UpdateCol();
+                }
+
             }
-            else if (other.getIsYellow())
+            else if (other.getIsYellow())   // Bullet is orange
             {
-                if (enemyColour.getIsBlue())
+                if (enemyColour.getIsBlue())    // Enemy has blue
+                    makeDead();
+                else if (enemyColour.getIsRed() || enemyColour.getIsYellow()) // Bullet is orange and enemy has Red or Yellow but no blue
+                {
+                    enemyColour.isRed = true;
+                    enemyColour.isYellow = true;
+                    this.gameObject.GetComponent<EnemyManager>().UpdateCol();
+                }
+            }
+            else // Bullet is red
+            {
+                if (enemyColour.getIsBlue() && enemyColour.getIsYellow())    // Enemy is green
                     makeDead();
             }
+
+
         }
-        else if(other.getIsBlue())
+        else if(other.getIsBlue())  // Bullet has no red but has blue
         {
-            if (other.getIsYellow())
+            if (other.getIsYellow())    // Bullet is green
             {
-                if (enemyColour.getIsRed())
+                if (enemyColour.getIsRed()) // Enemy has red
                     makeDead();
             }
-            if (enemyColour.getIsYellow())
+            else if (enemyColour.getIsYellow())  // Bullet is blue and Enemy has yellow
             {
-                if (enemyColour.getIsRed())
+                if (enemyColour.getIsRed()) // Enemy is orange
                     makeDead();
             }
+
         }
-        else if (other.getIsYellow())
+        else if (other.getIsYellow())   // Bullet is yellow
         {   
-            if (enemyColour.getIsBlue())
+            if (enemyColour.getIsBlue())    // Enemy has blue
             {
-                if (enemyColour.getIsRed())
+                if (enemyColour.getIsRed()) // Enemy is purple
                     makeDead();
             }
         }

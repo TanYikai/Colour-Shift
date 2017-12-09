@@ -29,20 +29,7 @@ public class EnemyManager : MonoBehaviour {
         myAnim = this.GetComponent<Animator>(); 
         myTrans = this.GetComponent<Transform>();
         //StartCoroutine(changeDirectionAfter(changeTime)); //Use to change direction after time instead of collision
-        if (myColour.getIsRed())
-        {
-            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Red/red");
-        }
-        else if (myColour.getIsBlue())
-        {
-            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Blue/monster_0");
-
-        }
-        else if (myColour.getIsYellow())
-        {
-            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Yellow/yellow");
-
-        }
+        UpdateCol();
     }
 	
 	// Update is called once per fraction of sec
@@ -91,5 +78,23 @@ public class EnemyManager : MonoBehaviour {
         yield return new WaitForSecondsRealtime(time);
         toRight = !toRight;
         changedDirection = false;
+    }
+
+    public void UpdateCol()
+    {
+        if (myColour.getIsRed())
+        {
+            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Red/red");
+        }
+        else if (myColour.getIsBlue())
+        {
+            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Blue/monster_0");
+
+        }
+        else if (myColour.getIsYellow())
+        {
+            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Yellow/yellow");
+        }
+
     }
 }
