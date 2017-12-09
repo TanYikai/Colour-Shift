@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114057588896382114}
   - component: {fileID: 50635925354803904}
   - component: {fileID: 58411240197718032}
+  - component: {fileID: 95089586568234104}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: BULLET
@@ -78,6 +79,23 @@ CircleCollider2D:
   m_Offset: {x: 0.5, y: 0.8}
   serializedVersion: 2
   m_Radius: 0.08
+--- !u!95 &95089586568234104
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1851933086763472}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9c22e0f4e0d7e34683885aa1411010b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114057588896382114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234be459433263f439e64262dd24c4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 1
-  lifeTime: 5
+  bulletSpeed: 5
+  lifeTime: 0.5
   facingRight: 1
 --- !u!212 &212365574346622782
 SpriteRenderer:

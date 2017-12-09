@@ -8,6 +8,7 @@ public class GateManager : MonoBehaviour {
 	public string colour;
 	public GameObject player;
 	private GameObject trigger;
+	
 
 	// Use this for initialization
 	void Start () {

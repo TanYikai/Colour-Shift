@@ -5,6 +5,7 @@ using UnityEngine;
 public class GateTriggerManager : MonoBehaviour {
 
 	GameObject parentGate;
+	public bool isLeftGate;
 	// Use this for initialization
 	void Start () {
 		parentGate = this.transform.parent.gameObject;
@@ -22,8 +23,14 @@ public class GateTriggerManager : MonoBehaviour {
 			if (!parentGate.GetComponent<GateManager>().GetPlayer().GetComponent<PlayerManager>().getPlayerColour().colourName().Equals(parentGate.GetComponent<GateManager>().GetColour()))
 			{
 				print("2");
-
-				parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(-0.05f, 0, 0);
+				if (isLeftGate)
+				{
+					parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(-0.05f, 0, 0);
+				}
+				else
+				{
+					parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(0.05f, 0, 0);
+				}
 				parentGate.gameObject.layer = 0;
 				other.gameObject.layer = 0;
 			}
