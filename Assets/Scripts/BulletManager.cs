@@ -9,19 +9,55 @@ public class BulletManager : MonoBehaviour
     public float lifeTime;
     Rigidbody2D myRB;
 
-    public bool facingRight = true;
+    public bool facingRight;
     public ColourObject bulletCol;
+    private Animator anim;
 
     // Use this for initialization
     void Start()
     {
-        //bulletCol = PaintManager.instance.popFromStack();
+        
+
         myRB = GetComponent<Rigidbody2D>();
 
-        if (!facingRight)
+        if (transform.localRotation.z > 0)
             myRB.AddForce(new Vector2(-1, 0) * bulletSpeed, ForceMode2D.Impulse);
         else
             myRB.AddForce(new Vector2(1, 0) * bulletSpeed, ForceMode2D.Impulse);
+
+        if (bulletCol.colourName().Equals("Red"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Blue/bullets_8");
+        }
+        else if (bulletCol.colourName().Equals("Blue"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Blue/bullets_0");
+
+        }
+        else if (bulletCol.colourName().Equals("Yellow"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Yellow/bullets_8");
+
+        }
+        else if (bulletCol.colourName().Equals("Orange"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Orange/orange");
+
+        }
+        else if (bulletCol.colourName().Equals("Purple"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Purple/purple");
+
+        }
+        else if (bulletCol.colourName().Equals("Green"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Green/green");
+
+        }
+        else if (bulletCol.colourName().Equals("White"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/White/white");
+        }
     }
 
     // Update is called once per frame

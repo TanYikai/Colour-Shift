@@ -170,51 +170,55 @@ public class PlayerManager : MonoBehaviour
     {
 
         GameObject bullet;
-
-        if (Time.time > nextFire)
+        if (PaintManager.instance.getStackSize() > 0)
         {
-            nextFire = Time.time + fireRate;
-
-
-            if (facingRight)
+            if (Time.time > nextFire)
             {
-                bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-            }
-            else
-            {
-                bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
-            }
+                nextFire = Time.time + fireRate;
 
-            if (PaintManager.instance.getStackSize() > 0)
+
+                if (facingRight)
+                {
+                    bullet = Instantiate(bulletPrefab, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+                }
+                else
+                {
+                    bullet = Instantiate(bulletPrefab, gunTip.position + new Vector3(1f,1.5f,0), Quaternion.Euler(new Vector3(0, 0, 180f)));
+                }
+
                 bullet.GetComponent<BulletManager>().bulletCol = PaintManager.instance.popFromStack();
-            SFXManager.PlaySound("GunShot");
+                SFXManager.PlaySound("GunShot");
+            }
         }
     }
 
     void PaintMyself()
     {
-        if (Time.time > nextFire)
+        if (PaintManager.instance.getStackSize() > 0)
         {
-            if (PaintManager.instance.getStackSize() > 0)
+            if (Time.time > nextFire)
             {
-                playerCol = PaintManager.instance.popFromStack();
-                if (playerCol.colourName().Equals("Red"))
+                if (PaintManager.instance.getStackSize() > 0)
                 {
-                    anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Red/redcontroller");
-                }
-                else if (playerCol.colourName().Equals("Blue"))
-                {
-                    anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Blue/bluecontroller");
+                    playerCol = PaintManager.instance.popFromStack();
+                    if (playerCol.colourName().Equals("Red"))
+                    {
+                        anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Red/redcontroller");
+                    }
+                    else if (playerCol.colourName().Equals("Blue"))
+                    {
+                        anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Blue/bluecontroller");
 
-                }
-                else if (playerCol.colourName().Equals("Yellow"))
-                {
-                    anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Yellow/yellowcontroller");
+                    }
+                    else if (playerCol.colourName().Equals("Yellow"))
+                    {
+                        anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Yellow/yellowcontroller");
 
-                }
-                else if (playerCol.colourName().Equals("Black"))
-                {
-                    anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Black/blackcontroller");
+                    }
+                    else if (playerCol.colourName().Equals("Black"))
+                    {
+                        anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Black/blackcontroller");
+                    }
                 }
             }
         }
