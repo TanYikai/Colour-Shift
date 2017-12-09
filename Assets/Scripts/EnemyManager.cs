@@ -84,7 +84,7 @@ public class EnemyManager : MonoBehaviour {
     {
         if (myColour.colourName().Equals("Red"))
         {
-            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Red/red_move");
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Red/red");
         }
         else if (myColour.colourName().Equals("Blue"))
         {
@@ -93,12 +93,12 @@ public class EnemyManager : MonoBehaviour {
         }
         else if (myColour.colourName().Equals("Yellow"))
         {
-            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Yellow/yellow_move");
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Yellow/yellow");
 
         }
         else if (myColour.colourName().Equals("Purple"))
         {
-            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Purple/Purple Move");
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Purple/Purple");
         }
         else if (myColour.colourName().Equals("Orange"))
         {

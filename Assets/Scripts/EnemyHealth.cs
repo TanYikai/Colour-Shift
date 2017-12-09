@@ -44,6 +44,11 @@ public class EnemyHealth : MonoBehaviour {
             {
                 if (enemyColour.getIsBlue() && enemyColour.getIsYellow())    // Enemy is green
                     makeDead();
+                else
+                {
+                    enemyColour.isRed = true;
+                    this.gameObject.GetComponent<EnemyManager>().UpdateCol();
+                }
             }
 
 
@@ -65,6 +70,12 @@ public class EnemyHealth : MonoBehaviour {
             {
                 if (enemyColour.getIsRed()) // Enemy is orange
                     makeDead();
+                
+            }
+            else
+            {
+                enemyColour.isBlue = true;
+                this.gameObject.GetComponent<EnemyManager>().UpdateCol();
             }
 
         }
@@ -75,6 +86,8 @@ public class EnemyHealth : MonoBehaviour {
                 if (enemyColour.getIsRed()) // Enemy is purple
                     makeDead();
             }
+            enemyColour.isYellow = true;
+            this.gameObject.GetComponent<EnemyManager>().UpdateCol();
         }
     }
     public void makeDead()

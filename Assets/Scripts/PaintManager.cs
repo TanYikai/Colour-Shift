@@ -25,7 +25,7 @@ public class PaintManager : MonoBehaviour {
         pushColor(new ColourObject(false, false, true));
         pushColor(new ColourObject(true, false, true));
         pushColor(new ColourObject(false, true, false));
-        pushColor(new ColourObject(false, false, true));
+        pushColor(new ColourObject(true, false, false));
 
 		//GameObject barZero = GameObject.Find("Stack 0");
 		//GameObject barOne = GameObject.Find("Stack 1");
