@@ -28,7 +28,7 @@ public class BulletManager : MonoBehaviour
         anim = this.GetComponent<Animator>();
         if (bulletCol.colourName().Equals("Red"))
         {
-            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Blue/bullets_8");
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Red/bullets_8");
         }
         else if (bulletCol.colourName().Equals("Blue"))
         {
