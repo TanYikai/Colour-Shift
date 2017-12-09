@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour {
     public ColourObject myColour;
     Rigidbody2D myRB;
-    Animator myAnim;
     Transform myTrans;
 
     public bool red;
@@ -27,7 +26,7 @@ public class EnemyManager : MonoBehaviour {
   
 
         myRB = this.GetComponent<Rigidbody2D>();
-        myAnim = this.GetComponent<Animator>(); 
+        anim = this.GetComponent<Animator>(); 
         myTrans = this.GetComponent<Transform>();
         //StartCoroutine(changeDirectionAfter(changeTime)); //Use to change direction after time instead of collision
         UpdateCol();
