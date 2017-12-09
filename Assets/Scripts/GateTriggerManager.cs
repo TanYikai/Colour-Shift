@@ -21,6 +21,8 @@ public class GateTriggerManager : MonoBehaviour {
 		{
 			if (!parentGate.GetComponent<GateManager>().GetPlayer().GetComponent<PlayerManager>().getPlayerColour().colourName().Equals(parentGate.GetComponent<GateManager>().GetColour()))
 			{
+				print("2");
+
 				parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(-0.05f, 0, 0);
 				parentGate.gameObject.layer = 0;
 				other.gameObject.layer = 0;
