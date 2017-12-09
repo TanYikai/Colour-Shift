@@ -22,7 +22,6 @@ public class GateTriggerManager : MonoBehaviour {
 		{
 			if (!parentGate.GetComponent<GateManager>().GetPlayer().GetComponent<PlayerManager>().getPlayerColour().colourName().Equals(parentGate.GetComponent<GateManager>().GetColour()))
 			{
-				print("2");
 				if (isLeftGate)
 				{
 					parentGate.GetComponent<GateManager>().GetPlayer().transform.Translate(-0.1f, 0, 0);
