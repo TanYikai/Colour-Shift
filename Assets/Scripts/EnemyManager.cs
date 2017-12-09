@@ -19,9 +19,10 @@ public class EnemyManager : MonoBehaviour {
     public float speed = 1;
     public float myWidth, myHeight;
 
+    Animator anim;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
         myColour = new ColourObject(red, blue, yellow);
   
 
@@ -82,19 +83,31 @@ public class EnemyManager : MonoBehaviour {
 
     public void UpdateCol()
     {
-        if (myColour.getIsRed())
+        if (myColour.colourName().Equals("Red"))
         {
-            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Red/red");
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Red/red_move");
         }
-        else if (myColour.getIsBlue())
+        else if (myColour.colourName().Equals("Blue"))
         {
-            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Blue/monster_0");
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Blue/monster_0");
 
         }
-        else if (myColour.getIsYellow())
+        else if (myColour.colourName().Equals("Yellow"))
         {
-            myAnim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Yellow/yellow");
-        }
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Yellow/yellow_move");
 
+        }
+        else if (myColour.colourName().Equals("Purple"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Purple/Purple Move");
+        }
+        else if (myColour.colourName().Equals("Orange"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Orange/Orange_Move");
+        }
+        else if (myColour.colourName().Equals("Green"))
+        {
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Monster/Green/Green Move");
+        }
     }
 }
