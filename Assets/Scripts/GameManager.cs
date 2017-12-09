@@ -28,17 +28,26 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //For Scene Management 
-        if (SceneManager.GetActiveScene().name == "Scene1"&&SceneNo!=1)
+        if (SceneManager.GetActiveScene().name == "Scene1temp"&&SceneNo!=1)
         {
             SceneNo = 1;
         }
-        else if (SceneManager.GetActiveScene().name != "MainMenu" && SceneNo != 0)
+        else if (SceneManager.GetActiveScene().name == "MainMenu" && SceneNo != 0)
         {
             SceneNo = 0;
         }
+        else if (SceneManager.GetActiveScene().name == "Scene2" && SceneNo != 2)
+        {
+            SceneNo = 2;
+        }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("Scene1");
+            if(SceneNo == 1)
+                SceneManager.LoadScene("Scene1temp");
+            else if(SceneNo == 2)
+            {
+                SceneManager.LoadScene("Scene2");
+            }
         }
     }
     public void meetObjective()
