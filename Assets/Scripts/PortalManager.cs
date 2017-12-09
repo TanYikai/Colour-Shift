@@ -18,7 +18,14 @@ public class PortalManager : MonoBehaviour {
     {
         if(collision.gameObject.tag == "PLAYER")
         {
-            SceneManager.LoadScene("MainMenu");
-        }
+			if (SceneManager.GetActiveScene().name == "Scene1temp")
+			{
+				SceneManager.LoadScene("Scene2");
+			}
+			else if (SceneManager.GetActiveScene().name == "Scene2")
+			{
+				SceneManager.LoadScene("MainMenu");
+			}
+		}
     }
 }
