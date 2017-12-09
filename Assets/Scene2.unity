@@ -5413,6 +5413,16 @@ Prefab:
       propertyPath: m_Constraints
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114192370624199686, guid: c9a0510cd8c26304ebf9c6bd85c91c2b,
+        type: 2}
+      propertyPath: colour
+      value: Purple
+      objectReference: {fileID: 0}
+    - target: {fileID: 114473189816433644, guid: c9a0510cd8c26304ebf9c6bd85c91c2b,
+        type: 2}
+      propertyPath: colour
+      value: Purple
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9a0510cd8c26304ebf9c6bd85c91c2b, type: 2}
   m_IsPrefabParent: 0
@@ -6375,8 +6385,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 659408642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 285.5, y: 154.5, z: 0}
-  m_LocalScale: {x: 0.71375, y: 0.71375, z: 0.71375}
+  m_LocalPosition: {x: 422, y: 237.5, z: 0}
+  m_LocalScale: {x: 1.055, y: 1.055, z: 1.055}
   m_Children:
   - {fileID: 619949598}
   - {fileID: 1411266027}
