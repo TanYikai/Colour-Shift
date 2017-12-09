@@ -92,7 +92,6 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Z))
         {
-            anim.SetTrigger("isShooting");
             Shoot();
         }
 
@@ -168,6 +167,8 @@ public class PlayerManager : MonoBehaviour
 
     void Shoot()
     {
+        anim.SetTrigger("isShooting");
+
 
         GameObject bullet;
         if (PaintManager.instance.getStackSize() > 0)
@@ -218,6 +219,22 @@ public class PlayerManager : MonoBehaviour
                     else if (playerCol.colourName().Equals("Black"))
                     {
                         anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Black/blackcontroller");
+                    }
+                    else if (playerCol.colourName().Equals("White"))
+                    {
+                        anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/White/whitecontroller");
+                    }
+                    else if (playerCol.colourName().Equals("Purple"))
+                    {
+                        anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Purple/purplecontroller");
+                    }
+                    else if (playerCol.colourName().Equals("Orange"))
+                    {
+                        anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Orange/orangecontroller");
+                    }
+                    else if (playerCol.colourName().Equals("Green"))
+                    {
+                        anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Man/Green/greencontroller");
                     }
                 }
             }

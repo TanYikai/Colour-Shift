@@ -25,6 +25,7 @@ public class BulletManager : MonoBehaviour
         else
             myRB.AddForce(new Vector2(1, 0) * bulletSpeed, ForceMode2D.Impulse);
 
+        anim = this.GetComponent<Animator>();
         if (bulletCol.colourName().Equals("Red"))
         {
             anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/Blue/bullets_8");
@@ -58,12 +59,13 @@ public class BulletManager : MonoBehaviour
         {
             anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/Bullets/White/white");
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
     private void Awake()
